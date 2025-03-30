@@ -1,6 +1,8 @@
 import Navbar from "@/components/navbar";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
+import { HeroUIProvider } from "@heroui/react";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -65,8 +67,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
-        <Navbar />
-        <div className="md:px-32">{children}</div>
+        <HeroUIProvider>
+          <Navbar />
+          <div className="md:px-32">{children}</div>
+        </HeroUIProvider>
       </body>
     </html>
   );

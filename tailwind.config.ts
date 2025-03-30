@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+const { heroui } = require("@heroui/react");
+
 export default {
   darkMode: ["class"],
   content: [
@@ -108,20 +110,5 @@ export default {
       },
     },
   },
-  plugins: [
-    require("tailwindcss-animate"),
-    function ({ addUtilities }) {
-      addUtilities({
-        ".text-stroke-1": {
-          "-webkit-text-stroke": "1px",
-        },
-        ".text-stroke-4": {
-          "-webkit-text-stroke": "4px",
-        },
-        ".text-stroke-black": {
-          "-webkit-text-stroke-color": "#072448",
-        },
-      });
-    },
-  ],
+  plugins: [require("tailwindcss-animate"), heroui()],
 } satisfies Config;

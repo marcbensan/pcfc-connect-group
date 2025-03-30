@@ -3,7 +3,6 @@
 import { Tag, TagInput } from "emblor";
 import { ChevronDownIcon } from "lucide-react";
 import { Label } from "./ui/label";
-import { Switch } from "./ui/switch";
 
 import {
   DropdownMenu,
@@ -14,6 +13,8 @@ import {
 import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
 import React, { useState } from "react";
 import { Button } from "./ui/button";
+import { Switch } from "./ui/switch";
+import { Checkbox } from "./ui/checkbox";
 
 type Checked = DropdownMenuCheckboxItemProps["checked"];
 
@@ -27,62 +28,64 @@ const days = [
   { id: "7", text: "Saturday" },
 ];
 
+const locations = [
+  { id: "1", text: "Church" },
+  { id: "2", text: "Home-based" },
+];
+
 export default function SearchFilters() {
   const [showStatusBar, setShowStatusBar] = React.useState<Checked>(false);
   const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false);
-  const [showPanel, setShowPanel] = React.useState<Checked>(false);
   const [selectedDays, setSelectedDays] = useState<Tag[]>([]);
   const [activeDayIndex, setActiveDayIndex] = useState<number | null>(null);
+  const [selectedLocations, setSelectedLocations] = useState<Tag[]>([]);
+  const [activeLocationIndex, setActiveLocationIndex] = useState<number | null>(
+    null
+  );
 
   return (
     <div className="border w-full md:max-w-[45rem] rounded-2xl p-4">
       <h1 className="text-xl font-semibold">Find a Group</h1>
       <hr className="my-4" />
-      <div className="flex flex-col md:flex-row w-full md:items-center space-y-8 md:space-x-48 md:justify-between">
-        <div className="flex flex-row my-4 space-x-2 items-center">
+      <div className="flex flex-col md:flex-row w-full md:items-center space-y-8 md:space-y-0 py-4 md:justify-between">
+        {/* <div className="flex flex-row my-4 space-x-2 items-center">
           <Switch id="airplane-mode" />
           <Label htmlFor="airplane-mode">Online</Label>
+        </div> */}
+
+        <div className="items-center w-full ">
+          <div className="flex space-x-2">
+            <Checkbox id="online" />
+            <div className="grid gap-1.5 leading-none">
+              <label
+                htmlFor="online"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                Online
+              </label>
+              <p className="text-sm text-muted-foreground">
+                You prefer online meetings than in-person
+              </p>
+            </div>
+          </div>
         </div>
+
         <div className=" space-x-4 items-center flex-grow flex flex-row">
-          <DropdownMenu>
-            <DropdownMenuTrigger className="w-full border p-3 rounded-lg">
-              <div className="flex flex-row justify-between w-full">
-                Location <ChevronDownIcon />
-              </div>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-full">
-              <DropdownMenuCheckboxItem
-                checked={showStatusBar}
-                onCheckedChange={setShowStatusBar}
-              >
-                Church
-              </DropdownMenuCheckboxItem>
-              <DropdownMenuCheckboxItem
-                checked={showActivityBar}
-                onCheckedChange={setShowActivityBar}
-              >
-                Home-based
-              </DropdownMenuCheckboxItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          {/* <DropdownMenu>
-            <DropdownMenuTrigger className="w-full border p-3 rounded-lg">
-              <div className="flex flex-row justify-between w-full">
-                Day <ChevronDownIcon />
-              </div>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {days.map((day) => (
-                <DropdownMenuCheckboxItem
-                  key={day}
-                  checked={true}
-                  onCheckedChange={true}
-                >
-                  {day}
-                </DropdownMenuCheckboxItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu> */}
+          <TagInput
+            tags={selectedLocations}
+            setTags={(newTags) => {
+              setSelectedLocations(newTags);
+            }}
+            placeholder="Locations"
+            styleClasses={{
+              input: "w-[100px]",
+            }}
+            activeTagIndex={activeLocationIndex}
+            setActiveTagIndex={setActiveLocationIndex}
+            autocompleteOptions={locations}
+            enableAutocomplete={true}
+            restrictTagsToAutocompleteOptions={true}
+          />
           <TagInput
             tags={selectedDays}
             setTags={(newTags) => {
@@ -101,7 +104,12 @@ export default function SearchFilters() {
         </div>
       </div>
       <hr className="my-4" />
-      <Button className="w-full my-2">Search</Button>
+      <div className="flex flex-row space-x-4 w-full">
+        <Button className="w-1/2 my-2">Search</Button>
+        <Button variant="outline" className="w-1/2 my-2">
+          Clear Filters
+        </Button>
+      </div>
     </div>
   );
 }
