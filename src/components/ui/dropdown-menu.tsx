@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 function DropdownMenu({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Root>) {
-  return <DropdownMenuPrimitive.Root data-slot="dropdown-menu"  {...props} />;
+  return <DropdownMenuPrimitive.Root data-slot="dropdown-menu" {...props} />;
 }
 
 function DropdownMenuPortal({
@@ -25,7 +25,6 @@ function DropdownMenuTrigger({
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {
   return (
     <DropdownMenuPrimitive.Trigger
-     
       data-slot="dropdown-menu-trigger"
       {...props}
     />
@@ -97,6 +96,9 @@ function DropdownMenuCheckboxItem({
         className
       )}
       checked={checked}
+      onSelect={(event) => {
+        event.preventDefault(); // Prevent the dropdown from closing
+      }}
       {...props}
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">

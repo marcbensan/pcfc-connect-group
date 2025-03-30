@@ -1,18 +1,37 @@
+"use client";
+
 import { ChevronDownIcon } from "lucide-react";
 import { Label } from "./ui/label";
 import { Switch } from "./ui/switch";
 
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 
+type Checked = DropdownMenuCheckboxItemProps["checked"];
+
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
 export default function SearchFilters() {
+  const [showStatusBar, setShowStatusBar] = React.useState<Checked>(false);
+  const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false);
+  const [showPanel, setShowPanel] = React.useState<Checked>(false);
+  const [selectedDays, setSelectedDays] = useState<string[]>([]);
+
   return (
     <div className="border w-full md:max-w-[45rem] rounded-2xl p-4">
       <h1 className="text-xl font-semibold">Find a Group</h1>
@@ -30,12 +49,18 @@ export default function SearchFilters() {
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-full">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Team</DropdownMenuItem>
-              <DropdownMenuItem>Subscription</DropdownMenuItem>
+              <DropdownMenuCheckboxItem
+                checked={showStatusBar}
+                onCheckedChange={setShowStatusBar}
+              >
+                Church
+              </DropdownMenuCheckboxItem>
+              <DropdownMenuCheckboxItem
+                checked={showActivityBar}
+                onCheckedChange={setShowActivityBar}
+              >
+                Home-based
+              </DropdownMenuCheckboxItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <DropdownMenu>
@@ -45,12 +70,15 @@ export default function SearchFilters() {
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Team</DropdownMenuItem>
-              <DropdownMenuItem>Subscription</DropdownMenuItem>
+              {days.map((day) => (
+                <DropdownMenuCheckboxItem
+                  key={day}
+                  checked={true}
+                  onCheckedChange={true}
+                >
+                  {day}
+                </DropdownMenuCheckboxItem>
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
