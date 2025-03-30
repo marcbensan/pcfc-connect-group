@@ -69,8 +69,7 @@ export default function SearchFilters() {
             </div>
           </div>
         </div>
-
-        <div className=" space-x-4 items-center flex-grow flex flex-row">
+        <div className="space-x-4 items-center flex-grow flex flex-row">
           <TagInput
             tags={selectedLocations}
             setTags={(newTags) => {
@@ -104,9 +103,9 @@ export default function SearchFilters() {
         </div>
       </div>
       <hr className="my-4" />
-      <div className="flex flex-row space-x-4 w-full">
-        <Button className="w-1/2 my-2">Search</Button>
-        <Button variant="outline" className="w-1/2 my-2">
+      <div className="flex flex-row space-x-2 max-w-full">
+        <Button className="flex-grow my-2">Search</Button>
+        <Button variant="outline" className="flex-grow my-2">
           Clear Filters
         </Button>
       </div>
