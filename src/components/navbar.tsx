@@ -10,7 +10,7 @@ export default function Navbar() {
     <NavigationMenu className="h-16">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <Link href="/" className="text-black">
+          <Link href="/" className="text-white font-bold">
             PCFC Connect Group
           </Link>
         </NavigationMenuItem>
