@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useId, useRef, useState } from "react";
 
-export function ExpandableCardDemo() {
+export function ExpandableCard() {
   const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(
     null
   );
@@ -125,7 +125,7 @@ export function ExpandableCardDemo() {
           </div>
         ) : null}
       </AnimatePresence>
-      <ul className="max-w-2xl grid grid-cols-2 mx-auto w-full gap-8">
+      <ul className="max-w-2xl grid grid-cols-2 mx-auto w-full md:gap-8">
         {cards.map((card, index) => (
           <motion.div
             layoutId={`card-${card.title}-${id}`}

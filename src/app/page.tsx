@@ -1,5 +1,5 @@
-import { ExpandableCardDemo } from "@/components/cards";
+import { ExpandableCard } from "@/components/cards";
 
 export default function Home() {
-  return <ExpandableCardDemo />
+  return <ExpandableCard />;
 }
