@@ -1,5 +1,6 @@
 "use client";
 
+import { Tag, TagInput } from "emblor";
 import { ChevronDownIcon } from "lucide-react";
 import { Label } from "./ui/label";
 import { Switch } from "./ui/switch";
@@ -17,20 +18,21 @@ import { Button } from "./ui/button";
 type Checked = DropdownMenuCheckboxItemProps["checked"];
 
 const days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
+  { id: "1", text: "Sunday" },
+  { id: "2", text: "Monday" },
+  { id: "3", text: "Tuesday" },
+  { id: "4", text: "Wednesday" },
+  { id: "5", text: "Thursday" },
+  { id: "6", text: "Friday" },
+  { id: "7", text: "Saturday" },
 ];
 
 export default function SearchFilters() {
   const [showStatusBar, setShowStatusBar] = React.useState<Checked>(false);
   const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false);
   const [showPanel, setShowPanel] = React.useState<Checked>(false);
-  const [selectedDays, setSelectedDays] = useState<string[]>([]);
+  const [selectedDays, setSelectedDays] = useState<Tag[]>([]);
+  const [activeDayIndex, setActiveDayIndex] = useState<number | null>(null);
 
   return (
     <div className="border w-full md:max-w-[45rem] rounded-2xl p-4">
@@ -63,7 +65,7 @@ export default function SearchFilters() {
               </DropdownMenuCheckboxItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <DropdownMenu>
+          {/* <DropdownMenu>
             <DropdownMenuTrigger className="w-full border p-3 rounded-lg">
               <div className="flex flex-row justify-between w-full">
                 Day <ChevronDownIcon />
@@ -80,7 +82,22 @@ export default function SearchFilters() {
                 </DropdownMenuCheckboxItem>
               ))}
             </DropdownMenuContent>
-          </DropdownMenu>
+          </DropdownMenu> */}
+          <TagInput
+            tags={selectedDays}
+            setTags={(newTags) => {
+              setSelectedDays(newTags);
+            }}
+            placeholder="Days"
+            styleClasses={{
+              input: "w-[100px]",
+            }}
+            activeTagIndex={activeDayIndex}
+            setActiveTagIndex={setActiveDayIndex}
+            autocompleteOptions={days}
+            enableAutocomplete={true}
+            restrictTagsToAutocompleteOptions={true}
+          />
         </div>
       </div>
       <hr className="my-4" />
