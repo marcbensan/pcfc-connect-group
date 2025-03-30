@@ -4,4 +4,5 @@ export interface Leader {
   time: string;
   isOnline: boolean;
   location: string;
+  description: string;
 }

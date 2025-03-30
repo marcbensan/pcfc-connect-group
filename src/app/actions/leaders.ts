@@ -10,6 +10,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "2PM",
       isOnline: false,
       location: "Church",
+      description:
+        "Join Rose's Saturday group at the church for fellowship and spiritual growth in a welcoming community.",
     },
     {
       name: "Juliet Guinto",
@@ -17,6 +19,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "Evening",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Connect with Juliet's Thursday evening online group for meaningful discussions and encouragement.",
     },
     {
       name: "Jasmin Gines-Japa",
@@ -24,6 +28,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "7:30PM",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Be part of Jasmin's midweek fellowship to recharge and grow in faith with others.",
     },
     {
       name: "Joy Manlupig",
@@ -31,6 +37,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "After Service",
       isOnline: false,
       location: "Church",
+      description:
+        "Join Joy's Sunday group after service for deeper connections and spiritual insights.",
     },
     {
       name: "Jojo Tagarda",
@@ -38,6 +46,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "After Service",
       isOnline: false,
       location: "Church",
+      description:
+        "Connect with Jojo's Sunday group to build relationships and grow in your walk with God.",
     },
     {
       name: "Jocelyn Bensan",
@@ -45,6 +55,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "Afternoon",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Join Jocelyn's weekday afternoon online group for encouragement and fellowship.",
     },
     {
       name: "Riza Dizon",
@@ -52,6 +64,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "3PM",
       isOnline: false,
       location: "Home-based",
+      description:
+        "Be part of Riza's Sunday afternoon group for a warm, home-based fellowship experience.",
     },
     {
       name: "Omer Dizon",
@@ -59,6 +73,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "9PM",
       isOnline: false,
       location: "Home-based",
+      description:
+        "Join Omer's late Saturday evening group for meaningful discussions in a relaxed setting.",
     },
     {
       name: "Juvy Kalaw",
@@ -66,6 +82,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "8:30PM",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Connect with Juvy's Friday night online group for encouragement and spiritual growth.",
     },
     {
       name: "Gerry Kalaw",
@@ -73,6 +91,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "7:30PM",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Join Gerry's Saturday evening online group for fellowship and inspiring discussions.",
     },
     {
       name: "Cyrus Gonzalo",
@@ -80,6 +100,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "Afternoon",
       isOnline: false,
       location: "Home-based",
+      description:
+        "Be part of Cyrus's Saturday afternoon group for a home-based fellowship experience.",
     },
     {
       name: "Lourdes Galaang",
@@ -87,6 +109,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "7:30PM",
       isOnline: true,
       location: "Virtual",
+      description:
+        "Join Lourdes's Tuesday evening virtual group for encouragement and spiritual growth.",
     },
     {
       name: "Rodel Valledor",
@@ -94,6 +118,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "7:30PM",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Connect with Rodel's Friday evening online group for fellowship and faith-building discussions.",
     },
     {
       name: "Mark Namnama",
@@ -101,6 +127,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "7PM",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Join Mark's Friday evening online group to grow in faith and connect with others.",
     },
     {
       name: "Jamil Namnama",
@@ -108,6 +136,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "Evening",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Be part of Jamil's weekday evening online group for encouragement and spiritual growth.",
     },
     {
       name: "May Soriano",
@@ -115,6 +145,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "6PM",
       isOnline: false,
       location: "Home-based",
+      description:
+        "Join May's Saturday evening group for a warm, home-based fellowship experience.",
     },
     {
       name: "Kheana Quiddaeon",
@@ -122,6 +154,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "7PM",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Connect with Kheana's Thursday evening online group for encouragement and spiritual growth.",
     },
     {
       name: "Maery Bagay",
@@ -129,6 +163,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "7:30PM",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Join Maery's Saturday evening online group for fellowship and inspiring discussions.",
     },
     {
       name: "Venna Domingsil",
@@ -136,6 +172,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "Evening",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Be part of Venna's weekday evening online group for encouragement and spiritual growth.",
     },
     {
       name: "Paz Virrey",
@@ -143,6 +181,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "8PM",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Join Paz's Thursday evening online group for fellowship and faith-building discussions.",
     },
     {
       name: "Allan Virrey",
@@ -150,6 +190,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "8PM",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Connect with Allan's Thursday evening online group for encouragement and spiritual growth.",
     },
     {
       name: "Stanley Esquierdo",
@@ -157,6 +199,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "7PM",
       isOnline: true,
       location: "Discord",
+      description:
+        "Join Stanley's Tuesday evening group on Discord for fellowship and meaningful discussions.",
     },
     {
       name: "Mercy Cusilit",
@@ -164,6 +208,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "4PM",
       isOnline: false,
       location: "Home-based",
+      description:
+        "Be part of Mercy's weekend afternoon group for a warm, home-based fellowship experience.",
     },
     {
       name: "Via Manuel",
@@ -171,6 +217,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "7PM",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Join Via's Tuesday evening online group for encouragement and spiritual growth.",
     },
     {
       name: "Jun Esquierdo",
@@ -178,6 +226,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "8:30PM",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Connect with Jun's Friday night online group for fellowship and faith-building discussions.",
     },
     {
       name: "Ana Mae Duca",
@@ -185,6 +235,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "Morning",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Join Ana Mae's weekday morning online group for encouragement and spiritual growth.",
     },
     {
       name: "Wilma Aurellio",
@@ -192,6 +244,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "Evening",
       isOnline: true,
       location: "Zoom",
+      description:
+        "Be part of Wilma's weekday evening online group for fellowship and inspiring discussions.",
     },
     {
       name: "Reli Guiterrez",
@@ -199,6 +253,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "2PM",
       isOnline: false,
       location: "Church",
+      description:
+        "Join Reli's Saturday group at the church for fellowship and spiritual growth in a welcoming community.",
     },
     {
       name: "Bong",
@@ -206,6 +262,8 @@ export async function getLeaders(): Promise<Leader[]> {
       time: "Evening",
       isOnline: true,
       location: "Virtual",
+      description:
+        "Connect with Bong's weekday evening virtual group for encouragement and spiritual growth.",
     },
   ];
 

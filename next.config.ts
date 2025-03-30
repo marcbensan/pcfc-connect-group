@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
       "img.youtube.com",
       "conference.nbasbl.org",
       "assets.aceternity.com",
+      "upload.wikimedia.org",
     ],
   },
 };
