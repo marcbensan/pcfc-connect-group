@@ -1,12 +1,21 @@
 import PreviousPage from "@/components/previous-page";
 import SignupForm from "@/components/signup-form";
+import { getLeader } from "../actions/leaders";
 
-export default function SignUpFormPage() {
+export default async function SignUpFormPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) {
+  const { leader } = await searchParams;
+  const leaderId = leader ?? undefined;
+
+  const leaderSelected = await getLeader(leaderId);
   return (
-    <div className="flex flex-col my-4 md:px-52">
+    <div className="flex flex-col my-8">
       <PreviousPage />
       <div className="flex justify-center">
-        <SignupForm />;
+        <SignupForm leader={leaderSelected} />;
       </div>
     </div>
   );

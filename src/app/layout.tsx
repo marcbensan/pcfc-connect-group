@@ -2,7 +2,7 @@ import Navbar from "@/components/navbar";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
-import { HeroUIProvider } from "@heroui/react";
+import Footer from "@/components/footer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -65,12 +65,13 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`${geistSans.variable} ${geistMono.variable} w-full antialiased `}
       >
-        <HeroUIProvider>
-          <Navbar />
-          <div className="md:px-32">{children}</div>
-        </HeroUIProvider>
+        <Navbar />
+        <div className="flex items-center w-full justify-center ">
+          <div className="md:w-[50rem]">{children}</div>
+        </div>
+        <Footer />
       </body>
     </html>
   );

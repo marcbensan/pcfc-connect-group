@@ -93,7 +93,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
 
                 <motion.a
                   layoutId={`button-${active.name}-${id}`}
-                  href={"/form"}
+                  href={`/form/?leader=${active.id}`}
                   className="px-7 py-3 text-sm rounded-lg font-bold bg-blue-800 text-white"
                 >
                   Join

@@ -1,4 +1,5 @@
 export interface Leader {
+  id: string;
   name: string;
   day: string;
   time: string;

@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
+import { Leader } from "@/lib/types/leader";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -26,7 +27,7 @@ const formSchema = z.object({
   receiveEmail: z.boolean().optional(),
 });
 
-export default function SignupForm() {
+export default function SignupForm({ leader }: { leader: Leader }) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,11 +58,13 @@ export default function SignupForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 max-w-3xl rounded-lg  border-2 p-6 m-4"
+        className="space-y-8 w-full rounded-lg  border-2 p-6 m-4"
       >
         <div className="flex flex-col space-y-2">
-          <h1 className="text-xl font-bold">Join Marc Bensan</h1>
-          <p className="text-sm text-gray-700">Saturday | 2 PM</p>
+          <h1 className="text-xl font-bold">Join {leader.name}</h1>
+          <p className="text-sm text-gray-700">
+            {leader.day} | {leader.time}
+          </p>
         </div>
         <hr />
         <FormField
