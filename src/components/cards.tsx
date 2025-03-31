@@ -63,6 +63,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
           </motion.button>
           <motion.div
             layoutId={`card-${active.name}-${id}`}
+            ref={ref}
             className="w-full max-w-[500px]  h-full md:h-fit md:max-h-[90%]  flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
           >
             <motion.div layoutId={`image-${active.name}-${id}`}>
@@ -79,9 +80,12 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
             <div>
               <div className="flex justify-between items-start p-4">
                 <div className="">
-                  <h3 className="font-bold text-neutral-700 dark:text-neutral-200">
+                  <motion.h3
+                    layoutId={`title-${active.name}-${id}`}
+                    className="font-bold text-neutral-700 dark:text-neutral-200"
+                  >
                     {active.name}
-                  </h3>
+                  </motion.h3>
                   <p className="text-neutral-600 dark:text-neutral-400">
                     {active.day} - {active.time}
                   </p>
@@ -89,8 +93,8 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
 
                 <motion.a
                   layoutId={`button-${active.name}-${id}`}
-                  href={`/form`}
-                  className="px-6 py-3 text-sm rounded-lg font-bold bg-blue-800 text-white"
+                  href={"/form"}
+                  className="px-7 py-3 text-sm rounded-lg font-bold bg-blue-800 text-white"
                 >
                   Join
                 </motion.a>
@@ -126,12 +130,9 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
                 />
               </motion.div>
               <div className="">
-                <motion.h3
-                  layoutId={`title-${card.name}-${id}`}
-                  className="font-medium text-neutral-800 dark:text-neutral-200 text-start md:text-left"
-                >
+                <h3 className="font-medium text-neutral-800 dark:text-neutral-200 text-start md:text-left">
                   {card.name}
-                </motion.h3>
+                </h3>
                 <p className="text-neutral-600 dark:text-neutral-400 text-start md:text-left">
                   {card.day} - {card.time}
                 </p>

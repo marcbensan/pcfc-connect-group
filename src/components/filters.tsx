@@ -1,22 +1,11 @@
 "use client";
 
 import { Tag, TagInput } from "emblor";
-import { ChevronDownIcon } from "lucide-react";
-import { Label } from "./ui/label";
 
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Button } from "./ui/button";
-import { Switch } from "./ui/switch";
 import { Checkbox } from "./ui/checkbox";
-
-type Checked = DropdownMenuCheckboxItemProps["checked"];
 
 const days = [
   { id: "1", text: "Sunday" },
@@ -34,14 +23,43 @@ const locations = [
 ];
 
 export default function SearchFilters() {
-  const [showStatusBar, setShowStatusBar] = React.useState<Checked>(false);
-  const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false);
   const [selectedDays, setSelectedDays] = useState<Tag[]>([]);
   const [activeDayIndex, setActiveDayIndex] = useState<number | null>(null);
   const [selectedLocations, setSelectedLocations] = useState<Tag[]>([]);
   const [activeLocationIndex, setActiveLocationIndex] = useState<number | null>(
     null
   );
+  const [isOnline, setIsOnline] = useState<boolean | undefined>(undefined);
+
+  const router = useRouter();
+
+  function handleSearch() {
+    const locationsId = selectedLocations
+      .map((location) => location.text)
+      .join(",");
+    const daysId = selectedDays.map((day) => day.text).join(",");
+    let query = `?online=${isOnline}`;
+    if (locationsId) {
+      query += `&locations=${locationsId}`;
+    }
+    if (daysId) {
+      query += `&days=${daysId}`;
+    }
+    console.log(query);
+    router.push(query);
+  }
+
+  function handleOnlineClick() {
+    setIsOnline(!isOnline);
+    setSelectedLocations([]);
+  }
+
+  function handleClearFilters() {
+    setIsOnline(undefined);
+    setSelectedDays([]);
+    setSelectedLocations([]);
+    router.push("/");
+  }
 
   return (
     <div className="border w-full md:max-w-[45rem] rounded-2xl p-4">
@@ -50,7 +68,7 @@ export default function SearchFilters() {
       <div className="flex flex-col md:flex-row w-full md:items-center space-y-8 md:space-y-0 py-4 md:justify-between">
         <div className="items-center w-full ">
           <div className="flex space-x-2">
-            <Checkbox id="online" />
+            <Checkbox onClick={handleOnlineClick} id="online" />
             <div className="grid gap-1.5 leading-none">
               <label
                 htmlFor="online"
@@ -65,21 +83,33 @@ export default function SearchFilters() {
           </div>
         </div>
         <div className="space-x-4 items-center flex-grow flex flex-row">
-          <TagInput
-            tags={selectedLocations}
-            setTags={(newTags) => {
-              setSelectedLocations(newTags);
-            }}
-            placeholder="Locations"
-            styleClasses={{
-              input: "w-[100px]",
-            }}
-            activeTagIndex={activeLocationIndex}
-            setActiveTagIndex={setActiveLocationIndex}
-            autocompleteOptions={locations}
-            enableAutocomplete={true}
-            restrictTagsToAutocompleteOptions={true}
-          />
+          <div className={`${isOnline ? "hidden" : ""}`}>
+            <TagInput
+              tags={selectedLocations}
+              setTags={(newTags) => {
+                setSelectedLocations(newTags);
+              }}
+              placeholder="Locations"
+              styleClasses={{
+                input: "w-32 outline-none",
+                tagPopover: {
+                  popoverTrigger: "hidden",
+                  popoverContent: "outline-none hidden",
+                },
+                autoComplete: {
+                  popoverContent: "w-full p-2",
+                  popoverTrigger: "mx-2",
+                },
+              }}
+              activeTagIndex={activeLocationIndex}
+              setActiveTagIndex={setActiveLocationIndex}
+              autocompleteOptions={locations}
+              enableAutocomplete={true}
+              usePopoverForTags={true}
+              restrictTagsToAutocompleteOptions={true}
+            />
+          </div>
+
           <TagInput
             tags={selectedDays}
             setTags={(newTags) => {
@@ -87,20 +117,35 @@ export default function SearchFilters() {
             }}
             placeholder="Days"
             styleClasses={{
-              input: "w-[100px]",
+              input: "w-32 outline-none",
+              tagPopover: {
+                popoverTrigger: "hidden",
+                popoverContent: "outline-none hidden",
+              },
+              autoComplete: {
+                popoverContent: "w-full p-2",
+                popoverTrigger: "mx-2",
+              },
             }}
             activeTagIndex={activeDayIndex}
             setActiveTagIndex={setActiveDayIndex}
             autocompleteOptions={days}
             enableAutocomplete={true}
+            usePopoverForTags={true}
             restrictTagsToAutocompleteOptions={true}
           />
         </div>
       </div>
       <hr className="my-4" />
       <div className="flex flex-row space-x-2 max-w-full">
-        <Button className="flex-grow my-2">Search</Button>
-        <Button variant="outline" className="flex-grow my-2">
+        <Button onClick={handleSearch} className="flex-grow my-2">
+          Search
+        </Button>
+        <Button
+          onClick={handleClearFilters}
+          variant="outline"
+          className="flex-grow my-2"
+        >
           Clear Filters
         </Button>
       </div>
