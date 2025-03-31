@@ -7,16 +7,22 @@ export default async function Home({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  // Parse query parameters using URLSearchParams
-  const online = Boolean(searchParams?.online);
-  const locations = searchParams?.locations
-    ? (searchParams.locations as string).split(",")
-    : undefined;
-  const days = searchParams?.days
-    ? (searchParams.days as string).split(",")
-    : undefined;
+  const { online, locations, days } = await searchParams;
+  const onlineValue = online ? online : undefined;
+  let onlineBool = undefined;
 
-  const leaders = await getLeaders({ online, locations, days });
+  if (onlineValue !== undefined) onlineBool = onlineValue === "true";
+
+  const locationsValue = locations
+    ? (locations as string).split(",")
+    : undefined;
+  const daysValue = days ? (days as string).split(",") : undefined;
+
+  const leaders = await getLeaders({
+    online: onlineBool,
+    locations: locationsValue,
+    days: daysValue,
+  });
 
   return (
     <div className="flex flex-col items-center space-y-12 mx-2 my-12 md:my-24">

@@ -585,6 +585,8 @@ export async function getLeaders({
     },
   ];
 
+  console.log(online, locations, days);
+
   // Filter leaders based on the provided conditions
   const filteredLeaders = groupLeaders.filter((leader) => {
     // Check online condition

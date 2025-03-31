@@ -3,7 +3,7 @@
 import { Tag, TagInput } from "emblor";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Button } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
 
@@ -29,16 +29,20 @@ export default function SearchFilters() {
   const [activeLocationIndex, setActiveLocationIndex] = useState<number | null>(
     null
   );
-  const [isOnline, setIsOnline] = useState<boolean | undefined>(undefined);
+  const [isOnline, setIsOnline] = useState<boolean>(false);
 
   const router = useRouter();
 
-  function handleSearch() {
+  function handleSearch(e: FormEvent) {
+    e.preventDefault();
     const locationsId = selectedLocations
       .map((location) => location.text)
       .join(",");
     const daysId = selectedDays.map((day) => day.text).join(",");
-    let query = `?online=${isOnline}`;
+    let query = "";
+    if (isOnline !== null) {
+      query += `?online=${isOnline}`;
+    }
     if (locationsId) {
       query += `&locations=${locationsId}`;
     }
@@ -55,7 +59,7 @@ export default function SearchFilters() {
   }
 
   function handleClearFilters() {
-    setIsOnline(undefined);
+    setIsOnline(false);
     setSelectedDays([]);
     setSelectedLocations([]);
     router.push("/");
@@ -68,7 +72,11 @@ export default function SearchFilters() {
       <div className="flex flex-col md:flex-row w-full md:items-center space-y-8 md:space-y-0 py-4 md:justify-between">
         <div className="items-center w-full ">
           <div className="flex space-x-2">
-            <Checkbox onClick={handleOnlineClick} id="online" />
+            <Checkbox
+              checked={isOnline}
+              onCheckedChange={handleOnlineClick}
+              id="online"
+            />
             <div className="grid gap-1.5 leading-none">
               <label
                 htmlFor="online"
@@ -82,7 +90,7 @@ export default function SearchFilters() {
             </div>
           </div>
         </div>
-        <div className="space-x-4 items-center flex-grow flex flex-row">
+        <div className="space-x-4 items-center flex flex-grow flex-row">
           <div className={`${isOnline ? "hidden" : ""}`}>
             <TagInput
               tags={selectedLocations}
@@ -97,7 +105,7 @@ export default function SearchFilters() {
                   popoverContent: "outline-none hidden",
                 },
                 autoComplete: {
-                  popoverContent: "w-full p-2",
+                  popoverContent: "w-12 p-2",
                   popoverTrigger: "mx-2",
                 },
               }}
@@ -109,31 +117,33 @@ export default function SearchFilters() {
               restrictTagsToAutocompleteOptions={true}
             />
           </div>
-
-          <TagInput
-            tags={selectedDays}
-            setTags={(newTags) => {
-              setSelectedDays(newTags);
-            }}
-            placeholder="Days"
-            styleClasses={{
-              input: "w-32 outline-none",
-              tagPopover: {
-                popoverTrigger: "hidden",
-                popoverContent: "outline-none hidden",
-              },
-              autoComplete: {
-                popoverContent: "w-full p-2",
-                popoverTrigger: "mx-2",
-              },
-            }}
-            activeTagIndex={activeDayIndex}
-            setActiveTagIndex={setActiveDayIndex}
-            autocompleteOptions={days}
-            enableAutocomplete={true}
-            usePopoverForTags={true}
-            restrictTagsToAutocompleteOptions={true}
-          />
+          <div className={`${isOnline && "w-40"}`}>
+            <TagInput
+              tags={selectedDays}
+              setTags={(newTags) => {
+                setSelectedDays(newTags);
+              }}
+              placeholder="Days"
+              styleClasses={{
+                input: "w-28 outline-none",
+                inlineTagsContainer: "w-32",
+                tagPopover: {
+                  popoverTrigger: "hidden",
+                  popoverContent: "outline-none hidden",
+                },
+                autoComplete: {
+                  popoverContent: "w-24 p-2",
+                  popoverTrigger: "mx-2",
+                },
+              }}
+              activeTagIndex={activeDayIndex}
+              setActiveTagIndex={setActiveDayIndex}
+              autocompleteOptions={days}
+              enableAutocomplete={true}
+              usePopoverForTags={true}
+              restrictTagsToAutocompleteOptions={true}
+            />
+          </div>
         </div>
       </div>
       <hr className="my-4" />
