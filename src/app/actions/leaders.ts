@@ -7,7 +7,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Rose Carandang",
       day: "Saturday",
-      time: "2PM",
+      time: "2:00 PM",
       isOnline: false,
       location: "Church",
       description:
@@ -25,7 +25,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Jasmin Gines-Japa",
       day: "Wednesday",
-      time: "7:30PM",
+      time: "7:30 PM",
       isOnline: true,
       location: "Zoom",
       description:
@@ -61,7 +61,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Riza Dizon",
       day: "Sunday",
-      time: "3PM",
+      time: "3:00 PM",
       isOnline: false,
       location: "Home-based",
       description:
@@ -70,7 +70,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Omer Dizon",
       day: "Saturday",
-      time: "9PM",
+      time: "9:00 PM",
       isOnline: false,
       location: "Home-based",
       description:
@@ -79,7 +79,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Juvy Kalaw",
       day: "Friday",
-      time: "8:30PM",
+      time: "8:30 PM",
       isOnline: true,
       location: "Zoom",
       description:
@@ -88,7 +88,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Gerry Kalaw",
       day: "Saturday",
-      time: "7:30PM",
+      time: "7:30 PM",
       isOnline: true,
       location: "Zoom",
       description:
@@ -106,7 +106,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Lourdes Galaang",
       day: "Tuesday",
-      time: "7:30PM",
+      time: "7:30 PM",
       isOnline: true,
       location: "Virtual",
       description:
@@ -115,7 +115,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Rodel Valledor",
       day: "Friday",
-      time: "7:30PM",
+      time: "7:30 PM",
       isOnline: true,
       location: "Zoom",
       description:
@@ -124,7 +124,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Mark Namnama",
       day: "Friday",
-      time: "7PM",
+      time: "7:00 PM",
       isOnline: true,
       location: "Zoom",
       description:
@@ -142,7 +142,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "May Soriano",
       day: "Saturday",
-      time: "6PM",
+      time: "6:00 PM",
       isOnline: false,
       location: "Home-based",
       description:
@@ -151,7 +151,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Kheana Quiddaeon",
       day: "Thursday",
-      time: "7PM",
+      time: "7:00 PM",
       isOnline: true,
       location: "Zoom",
       description:
@@ -160,7 +160,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Maery Bagay",
       day: "Saturday",
-      time: "7:30PM",
+      time: "7:30 PM",
       isOnline: true,
       location: "Zoom",
       description:
@@ -178,7 +178,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Paz Virrey",
       day: "Thursday",
-      time: "8PM",
+      time: "8:00 PM",
       isOnline: true,
       location: "Zoom",
       description:
@@ -187,7 +187,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Allan Virrey",
       day: "Thursday",
-      time: "8PM",
+      time: "8:00 PM",
       isOnline: true,
       location: "Zoom",
       description:
@@ -196,7 +196,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Stanley Esquierdo",
       day: "Tuesday",
-      time: "7PM",
+      time: "7:00 PM",
       isOnline: true,
       location: "Discord",
       description:
@@ -205,7 +205,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Mercy Cusilit",
       day: "Weekend",
-      time: "4PM",
+      time: "4:00 PM",
       isOnline: false,
       location: "Home-based",
       description:
@@ -214,7 +214,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Via Manuel",
       day: "Tuesday",
-      time: "7PM",
+      time: "7:00 PM",
       isOnline: true,
       location: "Zoom",
       description:
@@ -223,7 +223,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Jun Esquierdo",
       day: "Friday",
-      time: "8:30PM",
+      time: "8:30 PM",
       isOnline: true,
       location: "Zoom",
       description:
@@ -250,7 +250,7 @@ export async function getLeaders(): Promise<Leader[]> {
     {
       name: "Reli Guiterrez",
       day: "Saturday",
-      time: "2PM",
+      time: "2:00 PM",
       isOnline: false,
       location: "Church",
       description:

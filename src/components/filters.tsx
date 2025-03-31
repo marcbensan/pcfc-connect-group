@@ -48,11 +48,6 @@ export default function SearchFilters() {
       <h1 className="text-xl font-semibold">Find a Group</h1>
       <hr className="my-4" />
       <div className="flex flex-col md:flex-row w-full md:items-center space-y-8 md:space-y-0 py-4 md:justify-between">
-        {/* <div className="flex flex-row my-4 space-x-2 items-center">
-          <Switch id="airplane-mode" />
-          <Label htmlFor="airplane-mode">Online</Label>
-        </div> */}
-
         <div className="items-center w-full ">
           <div className="flex space-x-2">
             <Checkbox id="online" />
