@@ -18,7 +18,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 
-const formSchema = z.object({
+export const UserSchema = z.object({
   firstName: z.string().min(1).max(20),
   lastName: z.string().min(1).max(20),
   phone: z.string().min(10),
@@ -28,8 +28,8 @@ const formSchema = z.object({
 });
 
 export default function SignupForm({ leader }: { leader: Leader }) {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof UserSchema>>({
+    resolver: zodResolver(UserSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -40,7 +40,7 @@ export default function SignupForm({ leader }: { leader: Leader }) {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof UserSchema>) {
     try {
       console.log(values);
       toast(
