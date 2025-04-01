@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
       "conference.nbasbl.org",
       "assets.aceternity.com",
       "upload.wikimedia.org",
+      "img.freepik.com",
+      "pokewalls.wordpress.com",
     ],
   },
 };

@@ -17,6 +17,7 @@ export default async function SignUpFormPage({
       <div className="flex justify-center">
         <SignupForm leader={leaderSelected} />;
       </div>
+      
     </div>
   );
 }

@@ -1,4 +1,5 @@
 "use client";
+import { sendEmail } from "@/app/actions/form";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -27,7 +28,7 @@ export const UserSchema = z.object({
   receiveEmail: z.boolean().optional(),
 });
 
-export default function SignupForm({ leader }: { leader: Leader }) {
+export default function SignupForm({ leader }: { leader?: Leader }) {
   const form = useForm<z.infer<typeof UserSchema>>({
     resolver: zodResolver(UserSchema),
     defaultValues: {
@@ -42,7 +43,7 @@ export default function SignupForm({ leader }: { leader: Leader }) {
 
   function onSubmit(values: z.infer<typeof UserSchema>) {
     try {
-      console.log(values);
+      sendEmail(values, leader?.name || "-");
       toast(
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
           <code className="text-white">{JSON.stringify(values, null, 2)}</code>
@@ -61,9 +62,9 @@ export default function SignupForm({ leader }: { leader: Leader }) {
         className="space-y-8 w-full rounded-lg  border-2 p-6 m-4"
       >
         <div className="flex flex-col space-y-2">
-          <h1 className="text-xl font-bold">Join {leader.name}</h1>
+          <h1 className="text-xl font-bold">Join {leader?.name}</h1>
           <p className="text-sm text-gray-700">
-            {leader.day} | {leader.time}
+            {leader?.day} | {leader?.time}
           </p>
         </div>
         <hr />
