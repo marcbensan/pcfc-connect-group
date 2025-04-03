@@ -36,7 +36,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/20 h-full w-full z-10"
+          className="fixed inset-0 bg-black/20 h-full w-full z-10 "
         />
       )}
       {active && typeof active === "object" ? (
@@ -117,7 +117,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
             layoutId={`card-${card.name}-${id}`}
             key={`card-${card.name}-${id}`}
             onClick={() => setActive(card)}
-            className="p-4 flex flex-col border-1 md:flex-row justify-between items-center hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
+            className="p-4 flex flex-col border-1 md:flex-row justify-between bg-white shadow-sm items-center hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
           >
             <div className="flex gap-4 flex-col md:flex-row ">
               <motion.div layoutId={`image-${card.name}-${id}`}>
@@ -138,12 +138,6 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
                 </p>
               </div>
             </div>
-            {/* <motion.button
-              layoutId={`button-${card.title}-${id}`}
-              className="px-4 py-2 text-sm rounded-full font-bold bg-gray-100 hover:bg-green-500 hover:text-white text-black mt-4 md:mt-0"
-            >
-              {card.ctaText}
-            </motion.button> */}
           </motion.div>
         ))}
       </ul>

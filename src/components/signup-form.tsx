@@ -175,7 +175,9 @@ export default function SignupForm({ leader }: { leader?: Leader }) {
           )}
         />
         <hr />
-        <Button type="submit">Submit</Button>
+        <Button className="bg-blue-900 hover:bg-blue-950" type="submit">
+          Submit
+        </Button>
       </form>
     </Form>
   );

@@ -66,7 +66,7 @@ export default function SearchFilters() {
   }
 
   return (
-    <div className="border w-full md:max-w-[45rem] rounded-2xl p-4">
+    <div className="border w-full md:max-w-[45rem] rounded-2xl p-4 bg-white shadow-md">
       <h1 className="text-xl font-semibold">Find a Group</h1>
       <hr className="my-4" />
       <div className="flex flex-col md:flex-row w-full md:items-center space-y-8 md:space-y-0 py-4 md:justify-between">
@@ -106,7 +106,7 @@ export default function SearchFilters() {
                 },
                 autoComplete: {
                   popoverContent: "w-12 p-2",
-                  popoverTrigger: "mx-2",
+                  popoverTrigger: "mx-2 cursor-pointer",
                 },
               }}
               activeTagIndex={activeLocationIndex}
@@ -133,7 +133,7 @@ export default function SearchFilters() {
                 },
                 autoComplete: {
                   popoverContent: "w-24 p-2",
-                  popoverTrigger: "mx-2",
+                  popoverTrigger: "mx-2 cursor-pointer",
                 },
               }}
               activeTagIndex={activeDayIndex}
@@ -148,7 +148,10 @@ export default function SearchFilters() {
       </div>
       <hr className="my-4" />
       <div className="flex flex-row space-x-2 max-w-full">
-        <Button onClick={handleSearch} className="flex-grow my-2">
+        <Button
+          onClick={handleSearch}
+          className="flex-grow my-2 bg-blue-900 hover:bg-blue-950"
+        >
           Search
         </Button>
         <Button

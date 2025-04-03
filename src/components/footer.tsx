@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <div className="flex h-full w-full flex-col justify-center space-y-8 bg-blue-900 py-16 md:space-y-16">
-      <p className="whitespace-nowrap text-center text-3xl font-bold text-white md:text-5xl">
+      <p className="whitespace-nowrap text-start md:text-center mx-8 text-3xl font-bold text-white md:text-5xl">
         GET IN TOUCH
       </p>
       <div className="grid grid-rows-2 items-start gap-8 px-8 md:grid-cols-2 md:grid-rows-1 md:px-24">
