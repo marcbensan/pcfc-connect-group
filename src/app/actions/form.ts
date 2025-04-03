@@ -19,8 +19,8 @@ export async function sendEmail(
   name: string
 ): Promise<void> {
   const { data, error } = await RESEND.emails.send({
-    from: "Marc Bensan <onboarding@resend.dev>",
-    to: ["marcbensan.inq@gmail.com"],
+    from: "Marc Bensan <marc@updates.marcbensan.com>",
+    to: ["euniceritchesdolor@gmail.com"],
     subject: "Connect Group Request",
     react: EmailTemplate({ user: userInfo, leader: name }),
   });
