@@ -146,7 +146,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
         </>
       ) : (
         <div className="p-12 text-center w-full text-gray-700">
-          No leaders matched those schedules.
+          No leaders match your selected schedule.
         </div>
       )}
     </>

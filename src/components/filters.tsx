@@ -99,7 +99,7 @@ export default function SearchFilters() {
               }}
               placeholder="Locations"
               styleClasses={{
-                input: "w-32 outline-none",
+                input: "w-24 outline-none",
                 tagPopover: {
                   popoverTrigger: "hidden",
                   popoverContent: "outline-none hidden",
@@ -125,7 +125,7 @@ export default function SearchFilters() {
               }}
               placeholder="Days"
               styleClasses={{
-                input: "w-28 outline-none",
+                input: "w-24 outline-none",
                 inlineTagsContainer: "w-32",
                 tagPopover: {
                   popoverTrigger: "hidden",
