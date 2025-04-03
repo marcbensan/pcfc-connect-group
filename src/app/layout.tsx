@@ -69,7 +69,7 @@ export default function RootLayout({
       >
         <Navbar />
         <div className="custom-shape-divider-top-1743653415 mt-16 ">
-          <div className="h-[30rem] md:h-[20rem] bg-blue-900"></div>
+          <div className="h-[20rem] md:h-[20rem] bg-blue-900"></div>
           <svg
             data-name="Layer 1"
             xmlns="http://www.w3.org/2000/svg"
@@ -93,10 +93,11 @@ export default function RootLayout({
           </svg>
         </div>
         <div className="flex items-center w-full overflow-hidden mt-4 mb-16 md:mb-32 justify-center p-4 ">
-          <div className="md:w-[50rem] min-h-screen z-5 bg-white shadow-md rounded-lg md:rounded-3xl ">
+          <div className="md:w-[50rem] z-5 bg-white shadow-md rounded-2xl ">
             {children}
           </div>
         </div>
+        <div className="min-h-[10rem] md:hidden" />
         <Footer />
       </body>
     </html>
