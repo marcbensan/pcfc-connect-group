@@ -5,7 +5,7 @@ import { getLeaders } from "./actions/leaders";
 export default async function Home({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const { online, locations, days } = await searchParams;
   const onlineValue = online ? online : undefined;

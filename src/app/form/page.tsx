@@ -5,7 +5,7 @@ import { getLeader } from "../actions/leaders";
 export default async function SignUpFormPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | undefined };
+  searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const { leader } = await searchParams;
   const leaderId = leader ?? undefined;

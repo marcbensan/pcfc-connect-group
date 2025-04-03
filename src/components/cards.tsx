@@ -114,7 +114,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
             </div>
           ) : null}
           <ul className="max-w-2xl grid grid-cols-2 gap-4 mx-auto w-full md:gap-8">
-            {leaders.map((card, index) => (
+            {leaders.map((card) => (
               <motion.div
                 layoutId={`card-${card.name}-${id}`}
                 key={`card-${card.name}-${id}`}
