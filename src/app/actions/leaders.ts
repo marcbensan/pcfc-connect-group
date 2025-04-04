@@ -1,6 +1,7 @@
 "use server";
 
 import { Leader } from "@/lib/types/leader";
+import { createClient } from "@/utils/supabase/server";
 
 const groupLeaders: Leader[] = [
   {
@@ -295,6 +296,13 @@ const groupLeaders: Leader[] = [
   },
 ];
 
+export async function getSupabaseLeaders() {
+  const supabase = await createClient();
+  const { data: leaders } = await supabase.from("leaders").select();
+  console.log(leaders);
+  return leaders;
+}
+
 export async function getLeaders({
   online,
   locations,
@@ -303,11 +311,11 @@ export async function getLeaders({
   online: boolean | undefined;
   locations: string[] | undefined;
   days: string[] | undefined;
-}): Promise<Leader[]> {
-  console.log(online, locations, days);
+}): Promise<Leader[] | undefined> {
+  const groupLeaders = await getSupabaseLeaders();
 
   // Filter leaders based on the provided conditions
-  const filteredLeaders = groupLeaders.filter((leader) => {
+  const filteredLeaders = groupLeaders?.filter((leader) => {
     // Check online condition
     if (online !== undefined && leader.isOnline !== online) {
       return false;
@@ -366,7 +374,8 @@ export async function getLeaders({
 }
 
 export async function getLeader(id: string | undefined) {
-  const leader: Leader | undefined = groupLeaders.find(
+  const groupLeaders = await getSupabaseLeaders();
+  const leader: Leader | undefined = groupLeaders?.find(
     (leader) => leader.id === id
   );
 
