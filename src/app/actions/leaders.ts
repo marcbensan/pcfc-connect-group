@@ -7,6 +7,8 @@ export async function getSupabaseLeaders() {
   const supabase = await createClient();
   const { data: leaders, error } = await supabase.from("leaders").select();
 
+  error && console.error(error);
+
   return leaders;
 }
 
@@ -82,8 +84,9 @@ export async function getLeaders({
 
 export async function getLeader(id: string | undefined) {
   const groupLeaders = await getSupabaseLeaders();
+  console.log(groupLeaders);
   const leader: Leader | undefined = groupLeaders?.find(
-    (leader) => leader.id === id
+    (leader) => leader.id.toString() === id
   );
 
   return leader;

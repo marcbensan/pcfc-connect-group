@@ -65,7 +65,7 @@ export default function SearchFilters() {
   }
 
   return (
-    <div className="border w-full md:max-w-[45rem] rounded-2xl p-4 bg-white shadow-md">
+    <div className="border md:w-[45rem] rounded-2xl p-4 bg-white shadow-md">
       <h1 className="text-xl font-semibold">Find a Group</h1>
       <hr className="my-4" />
       <div className="flex flex-col md:flex-row w-full md:items-center space-y-8 md:space-y-0 py-4 md:justify-between">

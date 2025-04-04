@@ -77,7 +77,6 @@ export default function SignupForm({ leader }: { leader?: Leader }) {
               <FormControl>
                 <Input placeholder="ex. John" type="text" {...field} />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
