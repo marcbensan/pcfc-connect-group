@@ -24,12 +24,4 @@ export async function sendEmail(
     subject: "Connect Group Request",
     react: EmailTemplate({ user: userInfo, leader: name }),
   });
-
-  console.log(userInfo);
-
-  if (error) {
-    console.log(error);
-  }
-
-  console.log(data);
 }

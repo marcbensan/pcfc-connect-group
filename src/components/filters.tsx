@@ -49,7 +49,6 @@ export default function SearchFilters() {
     if (daysId) {
       query += `&days=${daysId}`;
     }
-    console.log(query);
     router.push(query);
   }
 

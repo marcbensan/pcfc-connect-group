@@ -298,8 +298,8 @@ const groupLeaders: Leader[] = [
 
 export async function getSupabaseLeaders() {
   const supabase = await createClient();
-  const { data: leaders } = await supabase.from("leaders").select();
-  console.log(leaders);
+  const { data: leaders, error } = await supabase.from("leaders").select();
+
   return leaders;
 }
 
