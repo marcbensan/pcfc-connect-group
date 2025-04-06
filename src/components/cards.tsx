@@ -66,7 +66,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
               <motion.div
                 layoutId={`card-${active.name}-${id}`}
                 ref={ref}
-                className="w-full max-w-[500px] h-fit max-h-[90%]  flex flex-col bg-white dark:bg-neutral-900 overflow-hidden"
+                className="w-full h-fit max-h-[90%]  flex flex-col bg-white dark:bg-neutral-900 overflow-hidden"
               >
                 <motion.div layoutId={`image-${active.name}-${id}`}>
                   <Image
@@ -113,7 +113,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
               </motion.div>
             </div>
           ) : null}
-          <ul className="max-w-2xl space-y-4 mx-auto w-full">
+          <ul className="space-y-4 mx-auto w-full">
             {leaders.map((card, index) => (
               <motion.div
                 layoutId={`card-${card.name}-${id}`}
@@ -153,7 +153,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
                       {card.name}
                     </h3>
                     <p className="text-neutral-600 dark:text-neutral-400 text-start">
-                      {card.day} - {card.time}
+                      {card.day} | {card.time}
                     </p>
                   </div>
                 </div>

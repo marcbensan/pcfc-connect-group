@@ -6,26 +6,28 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { Button } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
+import { MultiSelect } from "./ui/multi-select";
+import { MultiselectOption } from "@/lib/types/filters";
 
-const days = [
-  { id: "1", text: "Sunday" },
-  { id: "2", text: "Monday" },
-  { id: "3", text: "Tuesday" },
-  { id: "4", text: "Wednesday" },
-  { id: "5", text: "Thursday" },
-  { id: "6", text: "Friday" },
-  { id: "7", text: "Saturday" },
+const days: MultiselectOption[] = [
+  { label: "Sunday", value: "sunday" },
+  { label: "Monday", value: "monday" },
+  { label: "Tuesday", value: "tuesday" },
+  { label: "Wednesday", value: "wednesday" },
+  { label: "Thursday", value: "thursday" },
+  { label: "Friday", value: "friday" },
+  { label: "Saturday", value: "saturday" },
 ];
 
-const locations = [
-  { id: "1", text: "Church" },
-  { id: "2", text: "Home-based" },
+const locations: MultiselectOption[] = [
+  { label: "Church", value: "church" },
+  { label: "Home-based", value: "home-based" },
 ];
 
 export default function SearchFilters() {
-  const [selectedDays, setSelectedDays] = useState<Tag[]>([]);
+  const [selectedDays, setSelectedDays] = useState<string[]>([]);
   const [activeDayIndex, setActiveDayIndex] = useState<number | null>(null);
-  const [selectedLocations, setSelectedLocations] = useState<Tag[]>([]);
+  const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
   const [activeLocationIndex, setActiveLocationIndex] = useState<number | null>(
     null
   );
@@ -35,10 +37,8 @@ export default function SearchFilters() {
 
   function handleSearch(e: FormEvent) {
     e.preventDefault();
-    const locationsId = selectedLocations
-      .map((location) => location.text)
-      .join(",");
-    const daysId = selectedDays.map((day) => day.text).join(",");
+    const locationsId = selectedLocations.map((location) => location).join(",");
+    const daysId = selectedDays.map((day) => day).join(",");
     let query = "";
     if (isOnline !== null) {
       query += `?online=${isOnline}`;
@@ -65,87 +65,50 @@ export default function SearchFilters() {
   }
 
   return (
-    <div className="border md:w-[45rem] rounded-2xl p-4 bg-white shadow-md">
-      <h1 className="text-xl font-semibold">Find a Group</h1>
-      <hr className="my-4" />
-      <div className="flex flex-col md:flex-row w-full md:items-center space-y-8 md:space-y-0 py-4 md:justify-between">
+    <div className=" md:w-[45rem] w-[20rem] rounded-2xl p-4 bg-orange-300 shadow-md ">
+      <div className="flex flex-col md:flex-row w-full md:items-center space-y-8 md:space-y-0 py-2 md:justify-between">
         <div className="items-center w-full ">
           <div className="flex space-x-2">
             <Checkbox
               checked={isOnline}
               onCheckedChange={handleOnlineClick}
               id="online"
+              className="border-blue-900"
             />
             <div className="grid gap-1.5 leading-none">
               <label
                 htmlFor="online"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                className="text-md font-medium text-blue-900 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
-                Online
+                ONLINE
               </label>
-              <p className="text-sm text-muted-foreground">
-                You prefer online meetings than in-person
-              </p>
             </div>
           </div>
         </div>
-        <div className="space-x-4 items-center flex flex-grow flex-row">
-          <div className={`${isOnline ? "hidden" : ""}`}>
-            <TagInput
-              tags={selectedLocations}
-              setTags={(newTags) => {
-                setSelectedLocations(newTags);
-              }}
-              placeholder="Locations"
-              styleClasses={{
-                input: "w-24 outline-none",
-                tagPopover: {
-                  popoverTrigger: "hidden",
-                  popoverContent: "outline-none hidden",
-                },
-                autoComplete: {
-                  popoverContent: "w-12 p-2",
-                  popoverTrigger: "mx-2 cursor-pointer",
-                },
-              }}
-              activeTagIndex={activeLocationIndex}
-              setActiveTagIndex={setActiveLocationIndex}
-              autocompleteOptions={locations}
-              enableAutocomplete={true}
-              usePopoverForTags={true}
-              restrictTagsToAutocompleteOptions={true}
+        <div className="space-y-4 items-start flex-grow flex w-full flex-col">
+          <div className={`${isOnline ? "hidden" : ""} w-full`}>
+            <MultiSelect
+              options={locations}
+              onValueChange={setSelectedLocations}
+              defaultValue={selectedLocations}
+              placeholder="Select Location"
+              variant="default"
+              animation={0}
             />
           </div>
-          <div className={`${isOnline && "w-40"}`}>
-            <TagInput
-              tags={selectedDays}
-              setTags={(newTags) => {
-                setSelectedDays(newTags);
-              }}
-              placeholder="Days"
-              styleClasses={{
-                input: "w-24 outline-none",
-                inlineTagsContainer: "w-32",
-                tagPopover: {
-                  popoverTrigger: "hidden",
-                  popoverContent: "outline-none hidden",
-                },
-                autoComplete: {
-                  popoverContent: "w-24 p-2",
-                  popoverTrigger: "mx-2 cursor-pointer",
-                },
-              }}
-              activeTagIndex={activeDayIndex}
-              setActiveTagIndex={setActiveDayIndex}
-              autocompleteOptions={days}
-              enableAutocomplete={true}
-              usePopoverForTags={true}
-              restrictTagsToAutocompleteOptions={true}
+          <div className="w-full">
+            <MultiSelect
+              options={days}
+              onValueChange={setSelectedDays}
+              defaultValue={selectedDays}
+              placeholder="Select Days"
+              variant="default"
+              animation={0}
             />
           </div>
         </div>
       </div>
-      <hr className="my-4" />
+      <hr className="h-px my-4 bg-orange-400 border-0" />
       <div className="flex flex-row space-x-2 max-w-full">
         <Button
           onClick={handleSearch}

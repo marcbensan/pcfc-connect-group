@@ -25,7 +25,7 @@ export default async function Home({
   });
 
   return (
-    <div className="flex flex-col items-center space-y-12 m-4 md:my-12">
+    <div className="flex flex-col items-center space-y-12 md:my-12">
       <SearchFilters />
       <ExpandableCard leaders={leaders} />
     </div>
