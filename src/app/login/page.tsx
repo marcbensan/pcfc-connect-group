@@ -14,10 +14,10 @@ import { Label } from "@/components/ui/label";
 export default function LoginPage() {
   return (
     <form className="z-10">
-      <Card className="w-[20rem]">
+      <Card className="w-[20rem] bg-pcfcwhite text-pcfcprimary font-caption my-8 py-8">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold">Admin Login</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-2xl font-caption">Admin Login</CardTitle>
+          <CardDescription className="text-pcfcprimary/60">
             This path is only accessible for admins.
           </CardDescription>
         </CardHeader>
@@ -49,7 +49,11 @@ export default function LoginPage() {
           </div>
         </CardContent>
         <CardFooter className="flex flex-col w-full space-y-4">
-          <Button type="submit" formAction={login} className="w-full">
+          <Button
+            type="submit"
+            formAction={login}
+            className="w-full bg-pcfcprimary rounded-full"
+          >
             Sign In
           </Button>
         </CardFooter>

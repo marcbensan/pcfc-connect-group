@@ -38,7 +38,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-pcfcwhite h-full w-full z-10 font-caption"
+              className="fixed inset-0 bg-pcfcwhite h-full md:w-full md:bg-gray-900/50 w-full z-10 font-caption"
             />
           )}
           {active && typeof active === "object" ? (
@@ -66,7 +66,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
               <motion.div
                 layoutId={`card-${active.name}-${id}`}
                 ref={ref}
-                className="w-full flex flex-col bg-pcfcwhite overflow-hidden"
+                className="w-full md:w-[30rem] md:p-4 rounded-4xl flex flex-col bg-pcfcwhite overflow-hidden"
               >
                 <motion.div
                   layoutId={`image-${active.name}-${id}`}
@@ -78,7 +78,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
                     height={200}
                     src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
                     alt={active.name}
-                    className="size-80 object-cover rounded-full object-top mb-8"
+                    className="size-80 md:size-60 object-cover rounded-full object-top mb-8 md:mb-0 md:mt-4"
                   />
                 </motion.div>
 
@@ -122,7 +122,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
                 layoutId={`card-${card.name}-${id}`}
                 key={`card-${card.name}-${id}`}
                 onClick={() => setActive(card)}
-                className="p-4 flex border-1 flex-row justify-between bg-pcfcwhite shadow-sm items-center hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-full cursor-pointer"
+                className="p-4 flex border-1 flex-row justify-between bg-pcfcwhite shadow-sm items-center hover:bg-pcfcwhite/90 rounded-full cursor-pointer"
               >
                 <div
                   className={`flex gap-4 flex-row w-full ${
@@ -165,7 +165,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
           </ul>
         </>
       ) : (
-        <div className="p-12 text-center max-w-78 rounded-xl bg-pcfcwhite w-full text-pcfcprimary font-bold">
+        <div className="py-20 px-12 text-center max-w-78 rounded-xl bg-pcfcwhite w-full text-pcfcprimary font-bold md:max-w-full">
           No leaders match your selected schede.
         </div>
       )}

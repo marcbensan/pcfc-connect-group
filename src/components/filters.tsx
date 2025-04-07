@@ -24,11 +24,8 @@ const locations: MultiselectOption[] = [
 
 export default function SearchFilters() {
   const [selectedDays, setSelectedDays] = useState<string[]>([]);
-  const [activeDayIndex, setActiveDayIndex] = useState<number | null>(null);
   const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
-  const [activeLocationIndex, setActiveLocationIndex] = useState<number | null>(
-    null
-  );
+
   const [isOnline, setIsOnline] = useState<boolean>(false);
 
   const router = useRouter();
@@ -63,10 +60,10 @@ export default function SearchFilters() {
   }
 
   return (
-    <div className=" md:w-[45rem] w-[20rem] font-caption text-pcfcprimary rounded-2xl p-4 bg-pcfcsecondary shadow-md ">
-      <div className="flex flex-col md:flex-row w-full md:items-center space-y-8 md:space-y-0 py-2 md:justify-between">
+    <div className=" md:w-[45rem] w-[20rem] font-caption text-pcfcprimary rounded-2xl p-4 md:p-6 bg-pcfcsecondary shadow-md ">
+      <div className="flex flex-col w-full md:items-center space-y-8 md:space-y-0 py-2 md:justify-between">
         <div className="items-center w-full ">
-          <div className="flex space-x-2 items-center">
+          <div className="flex space-x-2 items-center md:mb-8">
             <Switch
               checked={isOnline}
               onCheckedChange={handleOnlineClick}
@@ -80,7 +77,7 @@ export default function SearchFilters() {
             </label>
           </div>
         </div>
-        <div className="space-y-4 items-start flex-grow flex w-full flex-col">
+        <div className="space-y-4 items-start flex-grow flex w-full flex-col md:flex-row md:space-x-4">
           <div className={`${isOnline ? "hidden" : ""} w-full`}>
             <MultiSelect
               options={locations}

@@ -24,18 +24,18 @@ export function Unauthorized({
   const router = useRouter();
 
   return (
-    <Card className="md:w-[40rem] w-[20rem] min-h-[20rem] flex flex-col shadow-lg border border-gray-200 dark:border-gray-700">
+    <Card className="md:w-[40rem] w-[20rem] min-h-[20rem] flex flex-col bg-pcfcwhite font-caption">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold text-red-700 whitespace-nowrap">
+        <CardTitle className="text-2xl font-bold text-red-800 whitespace-nowrap">
           {title}
         </CardTitle>
-        <CardDescription className="text-gray-600 dark:text-gray-400 mt-2">
+        <CardDescription className="text-pcfcprimary/60 mt-2">
           {description}
         </CardDescription>
       </CardHeader>
       <CardContent className="mt-6">
         <Button
-          className="px-6 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-80 0"
+          className="px-6 py-2 bg-pcfcprimary text-white rounded-full hover:bg-blue-80 0"
           onClick={onButtonClick || (() => router.push("/"))}
         >
           {buttonText}

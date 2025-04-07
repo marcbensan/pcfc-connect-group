@@ -40,7 +40,7 @@ export default function RootLayout({
         <link rel="icon" href="/logo-white.png" />
       </head>
       <body
-        className={`${anton.variable} ${DMSans.variable} w-full antialiased bg-contain bg-[url(/bg-vertical.jpg)]`}
+        className={`${anton.variable} ${DMSans.variable} w-full antialiased bg-contain bg-[url(/bg-vertical.jpg)] md:bg-[url(/bg-horizontal.jpg)]`}
       >
         <Navbar />
         <div className="flex w-full py-8 justify-center overflow-hidden md:mb-32">

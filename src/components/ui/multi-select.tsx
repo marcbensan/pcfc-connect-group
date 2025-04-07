@@ -33,9 +33,9 @@ const multiSelectVariants = cva(
     variants: {
       variant: {
         default:
-          "border-foreground/10 text-foreground bg-card hover:bg-card/80",
+          "border-foreground/10 border-pcfcprimary text-pcfcprimary bg-pcfctertiary/30 hover:bg-pcfctertiary/50",
         secondary:
-          "border-foreground/10 bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "border-foreground/10 bg-pcfctertiary/30 text-secondary-foreground hover:bg-secondary/80",
         destructive:
           "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
         inverted: "inverted",
@@ -172,6 +172,12 @@ export const MultiSelect = React.forwardRef<
       onValueChange(newSelectedValues);
     };
 
+    React.useEffect(() => {
+      if (defaultValue.length === 0 && selectedValues.length > 0) {
+        handleClear();
+      }
+    }, [defaultValue, selectedValues]);
+
     return (
       <Popover
         open={isPopoverOpen}
@@ -190,18 +196,16 @@ export const MultiSelect = React.forwardRef<
           >
             {selectedValues.length > 0 ? (
               <div className="flex justify-between items-center w-[20rem]">
-                <div className="flex whitespace-nowrap overflow-hidden max-w-[13rem] items-center">
+                <div className="flex whitespace-nowrap overflow-hidden max-w-[13rem] md:max-w-[16rem] items-center">
                   {selectedValues.slice(0, maxCount).map((value) => {
                     const option = options.find((o) => o.value === value);
                     return (
                       <Badge
                         key={value}
                         className={cn(
-                          isAnimating ? "animate-bounce" : "",
                           multiSelectVariants({ variant }),
                           "p-2 bg-pcfctertiary/30 border-pcfcprimary text-pcfcprimary"
                         )}
-                        style={{ animationDuration: `${animation}s` }}
                       >
                         {option.label}
                         <XCircle
@@ -217,7 +221,7 @@ export const MultiSelect = React.forwardRef<
                   {selectedValues.length > maxCount && (
                     <Badge
                       className={cn(
-                        "bg-transparent text-foreground border-blue-900 hover:bg-transparent",
+                        " bg-pcfctertiary/30 border-pcfcprimary border-1 text-pcfcprimary hover:bg-transparent",
                         isAnimating ? "animate-bounce" : "",
                         multiSelectVariants({ variant }),
                         "p-2"
@@ -285,11 +289,11 @@ export const MultiSelect = React.forwardRef<
                         className={cn(
                           "mr-2 flex h-4 w-4 bg-pcfcwhite items-center justify-center rounded-sm border border-primary",
                           isSelected
-                            ? "bg-primary text-primary-foreground"
+                            ? "bg-pcfcprimary text-primary-foreground"
                             : "opacity-50 [&_svg]:invisible"
                         )}
                       >
-                        <CheckIcon className="h-4 w-4" />
+                        <CheckIcon className="h-4 w-4 text-white" />
                       </div>
 
                       <span>{option.label}</span>
