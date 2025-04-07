@@ -99,12 +99,6 @@ interface MultiSelectProps
   modalPopover?: boolean;
 
   /**
-   * If true, renders the multi-select component as a child of another component.
-   * Optional, defaults to false.
-   */
-  asChild?: boolean;
-
-  /**
    * Additional class names to apply custom styles to the multi-select component.
    * Optional, can be used to add custom styles.
    */
@@ -125,7 +119,6 @@ export const MultiSelect = React.forwardRef<
       animation = 0,
       maxCount = 2,
       modalPopover = false,
-      asChild = false,
       className,
       ...props
     },
@@ -134,7 +127,6 @@ export const MultiSelect = React.forwardRef<
     const [selectedValues, setSelectedValues] =
       React.useState<string[]>(defaultValue);
     const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
-    const [isAnimating, setIsAnimating] = React.useState(false);
 
     const handleInputKeyDown = (
       event: React.KeyboardEvent<HTMLInputElement>
@@ -207,7 +199,7 @@ export const MultiSelect = React.forwardRef<
                           "p-2 bg-pcfctertiary/30 border-pcfcprimary text-pcfcprimary"
                         )}
                       >
-                        {option.label}
+                        {option?.label}
                         <XCircle
                           className="ml-2 h-4 w-4 cursor-pointer"
                           onClick={(event) => {
@@ -222,7 +214,7 @@ export const MultiSelect = React.forwardRef<
                     <Badge
                       className={cn(
                         " bg-pcfctertiary/30 border-pcfcprimary border-1 text-pcfcprimary hover:bg-transparent",
-                        isAnimating ? "animate-bounce" : "",
+
                         multiSelectVariants({ variant }),
                         "p-2"
                       )}

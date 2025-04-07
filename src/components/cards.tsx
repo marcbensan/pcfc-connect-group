@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useId, useRef, useState } from "react";
 
-export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
+export function ExpandableCard({ leaders }: { leaders: Leader[] | undefined }) {
   const [active, setActive] = useState<Leader[][number] | boolean | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const id = useId();
@@ -31,7 +31,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
 
   return (
     <>
-      {leaders.length > 0 ? (
+      {leaders && leaders.length > 0 ? (
         <>
           {active && typeof active === "object" && (
             <motion.div

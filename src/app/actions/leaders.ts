@@ -7,7 +7,9 @@ export async function getSupabaseLeaders() {
   const supabase = await createClient();
   const { data: leaders, error } = await supabase.from("leaders").select();
 
-  error && console.error(error);
+  if (error) {
+    console.error(error);
+  }
 
   return leaders;
 }
