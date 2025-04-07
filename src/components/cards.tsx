@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useId, useRef, useState } from "react";
 
-export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
+export function ExpandableCard({ leaders }: { leaders: Leader[] | undefined }) {
   const [active, setActive] = useState<Leader[][number] | boolean | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const id = useId();
@@ -31,18 +31,18 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
 
   return (
     <>
-      {leaders.length > 0 ? (
+      {leaders && leaders.length > 0 ? (
         <>
           {active && typeof active === "object" && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/20 h-full w-full z-10 "
+              className="fixed inset-0 bg-pcfcwhite h-full md:w-full md:bg-gray-900/50 w-full z-10 font-caption"
             />
           )}
           {active && typeof active === "object" ? (
-            <div className="fixed inset-0 grid  place-items-center z-[100]">
+            <div className="fixed inset-0 grid  place-items-center z-[100] font-caption text-pcfcprimary">
               <motion.button
                 key={`button-${active.name}-${id}`}
                 layout
@@ -58,7 +58,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
                     duration: 0.05,
                   },
                 }}
-                className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
+                className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full size-10"
                 onClick={() => setActive(null)}
               >
                 <CloseIcon />
@@ -66,16 +66,19 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
               <motion.div
                 layoutId={`card-${active.name}-${id}`}
                 ref={ref}
-                className="w-full max-w-[500px]  h-full md:h-fit md:max-h-[90%]  flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
+                className="w-full md:w-[30rem] md:p-4 rounded-4xl flex flex-col bg-pcfcwhite overflow-hidden"
               >
-                <motion.div layoutId={`image-${active.name}-${id}`}>
+                <motion.div
+                  layoutId={`image-${active.name}-${id}`}
+                  className="flex justify-center items-center space-y-4"
+                >
                   <Image
                     priority
                     width={200}
                     height={200}
                     src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
                     alt={active.name}
-                    className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
+                    className="size-80 md:size-60 object-cover rounded-full object-top mb-8 md:mb-0 md:mt-4"
                   />
                 </motion.div>
 
@@ -84,11 +87,11 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
                     <div className="">
                       <motion.h3
                         layoutId={`title-${active.name}-${id}`}
-                        className="font-bold text-neutral-700 dark:text-neutral-200"
+                        className="font-bold text-xl"
                       >
                         {active.name}
                       </motion.h3>
-                      <p className="text-neutral-600 dark:text-neutral-400">
+                      <p className="text-pcfcprimary/70">
                         {active.day} - {active.time}
                       </p>
                     </div>
@@ -96,7 +99,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
                     <motion.a
                       layoutId={`button-${active.name}-${id}`}
                       href={`/form/?leader=${active.id}`}
-                      className="px-7 py-3 text-sm rounded-lg font-bold bg-blue-800 text-white"
+                      className="px-7 py-3 text-sm rounded-full font-bold bg-blue-800 text-white"
                     >
                       Join
                     </motion.a>
@@ -104,7 +107,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
                   <div className="pt-4 relative px-4">
                     <motion.div
                       layout
-                      className="text-neutral-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto dark:text-neutral-400 [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                      className="text-sm lg:text-base  h-fit pb-10 flex flex-col items-start gap-4 overflow-auto dark:text-neutral-400 [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
                     >
                       {active.description}
                     </motion.div>
@@ -113,30 +116,47 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
               </motion.div>
             </div>
           ) : null}
-          <ul className="max-w-2xl grid grid-cols-2 gap-4 mx-auto w-full md:gap-8">
-            {leaders.map((card) => (
+          <ul className="space-y-4 mx-auto w-full font-caption text-pcfcprimary">
+            {leaders.map((card, index) => (
               <motion.div
                 layoutId={`card-${card.name}-${id}`}
                 key={`card-${card.name}-${id}`}
                 onClick={() => setActive(card)}
-                className="p-4 flex flex-col border-1 md:flex-row justify-between bg-white shadow-sm items-center hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
+                className="p-4 flex border-1 flex-row justify-between bg-pcfcwhite shadow-sm items-center hover:bg-pcfcwhite/90 rounded-full cursor-pointer"
               >
-                <div className="flex gap-4 flex-col md:flex-row ">
-                  <motion.div layoutId={`image-${card.name}-${id}`}>
+                <div
+                  className={`flex gap-4 flex-row w-full ${
+                    index % 2 !== 0 && "justify-end"
+                  }`}
+                >
+                  <motion.div
+                    layoutId={`image-${card.name}-${id}`}
+                    className={`${
+                      index % 2 === 0 ? "order-first" : "order-last"
+                    }`}
+                  >
                     <Image
                       width={100}
                       height={100}
                       src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
                       alt={card.name}
-                      className="h-40 w-40 md:h-14 md:w-14 rounded-lg object-cover object-top"
+                      className={`h-14 w-14 rounded-full object-cover object-top`}
                     />
                   </motion.div>
-                  <div className="">
-                    <h3 className="font-medium text-neutral-800 dark:text-neutral-200 text-start md:text-left">
+                  <div
+                    className={`${
+                      index % 2 === 0 ? "order-last" : "order-first"
+                    }`}
+                  >
+                    <h3
+                      className={`text-lg font-semibold  ${
+                        index % 2 !== 0 ? "text-right" : "text-left"
+                      }`}
+                    >
                       {card.name}
                     </h3>
-                    <p className="text-neutral-600 dark:text-neutral-400 text-start md:text-left">
-                      {card.day} - {card.time}
+                    <p className=" text-start text-pcfcprimary/70">
+                      {card.day} | {card.time}
                     </p>
                   </div>
                 </div>
@@ -145,8 +165,8 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] }) {
           </ul>
         </>
       ) : (
-        <div className="p-12 text-center w-full text-gray-700">
-          No leaders match your selected schedule.
+        <div className="py-20 px-12 text-center max-w-78 rounded-xl bg-pcfcwhite w-full text-pcfcprimary font-bold md:max-w-full">
+          No leaders match your selected schede.
         </div>
       )}
     </>
