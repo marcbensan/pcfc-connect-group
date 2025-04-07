@@ -20,10 +20,19 @@ import { toast } from "sonner";
 import * as z from "zod";
 
 export const UserSchema = z.object({
-  firstName: z.string().min(1).max(20),
-  lastName: z.string().min(1).max(20),
-  phone: z.string().min(10),
-  email: z.string().min(1),
+  firstName: z
+    .string()
+    .min(1, { message: "First Name is required" })
+    .max(20, { message: "First Name must not be over 20 characters" }),
+  lastName: z
+    .string()
+    .min(1, { message: "First Name is required" })
+    .max(20, { message: "First Name must not be over 20 characters" }),
+  phone: z
+    .string()
+    .min(1, { message: "Phone number is required" })
+    .max(10, { message: "Phone number must not exceed 10 characters" }),
+  email: z.string().min(1, { message: "Email is required" }),
   message: z.string().optional(),
   receiveEmail: z.boolean().optional(),
 });
