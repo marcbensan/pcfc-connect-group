@@ -4,8 +4,8 @@ import { MultiselectOption } from "@/lib/types/filters";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { Button } from "./ui/button";
-import { Checkbox } from "./ui/checkbox";
 import { MultiSelect } from "./ui/multi-select";
+import { Switch } from "./ui/switch";
 
 const days: MultiselectOption[] = [
   { label: "Sunday", value: "sunday" },
@@ -66,21 +66,18 @@ export default function SearchFilters() {
     <div className=" md:w-[45rem] w-[20rem] font-caption text-pcfcprimary rounded-2xl p-4 bg-pcfcsecondary shadow-md ">
       <div className="flex flex-col md:flex-row w-full md:items-center space-y-8 md:space-y-0 py-2 md:justify-between">
         <div className="items-center w-full ">
-          <div className="flex space-x-2">
-            <Checkbox
+          <div className="flex space-x-2 items-center">
+            <Switch
               checked={isOnline}
               onCheckedChange={handleOnlineClick}
               id="online"
-              className="border-pcfcprimary"
             />
-            <div className="grid gap-1.5 leading-none">
-              <label
-                htmlFor="online"
-                className="text-md font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                ONLINE
-              </label>
-            </div>
+            <label
+              htmlFor="online"
+              className="text-md font-caption leading-none "
+            >
+              {isOnline ? "ONLINE" : "IN-PERSON"}
+            </label>
           </div>
         </div>
         <div className="space-y-4 items-start flex-grow flex w-full flex-col">
