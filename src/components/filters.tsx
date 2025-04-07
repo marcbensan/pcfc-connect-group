@@ -1,13 +1,11 @@
 "use client";
 
-import { Tag, TagInput } from "emblor";
-
+import { MultiselectOption } from "@/lib/types/filters";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { Button } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
 import { MultiSelect } from "./ui/multi-select";
-import { MultiselectOption } from "@/lib/types/filters";
 
 const days: MultiselectOption[] = [
   { label: "Sunday", value: "sunday" },
@@ -65,7 +63,7 @@ export default function SearchFilters() {
   }
 
   return (
-    <div className=" md:w-[45rem] w-[20rem] rounded-2xl p-4 bg-orange-300 shadow-md ">
+    <div className=" md:w-[45rem] w-[20rem] rounded-2xl p-4 bg-pcfcsecondary shadow-md ">
       <div className="flex flex-col md:flex-row w-full md:items-center space-y-8 md:space-y-0 py-2 md:justify-between">
         <div className="items-center w-full ">
           <div className="flex space-x-2">
@@ -73,7 +71,7 @@ export default function SearchFilters() {
               checked={isOnline}
               onCheckedChange={handleOnlineClick}
               id="online"
-              className="border-blue-900"
+              className="border-pcfcprimary"
             />
             <div className="grid gap-1.5 leading-none">
               <label
@@ -91,7 +89,7 @@ export default function SearchFilters() {
               options={locations}
               onValueChange={setSelectedLocations}
               defaultValue={selectedLocations}
-              placeholder="Select Location"
+              placeholder="Locations"
               variant="default"
               animation={0}
             />
@@ -101,18 +99,18 @@ export default function SearchFilters() {
               options={days}
               onValueChange={setSelectedDays}
               defaultValue={selectedDays}
-              placeholder="Select Days"
+              placeholder="Days"
               variant="default"
               animation={0}
             />
           </div>
         </div>
       </div>
-      <hr className="h-px my-4 bg-orange-400 border-0" />
+      <hr className="h-px my-4 bg-pcfctertiary border-1 border-pcfctertiary" />
       <div className="flex flex-row space-x-2 max-w-full">
         <Button
           onClick={handleSearch}
-          className="flex-grow my-2 bg-blue-900 hover:bg-blue-950"
+          className="flex-grow my-2 bg-pcfcprimary hover:bg-blue-950"
         >
           Search
         </Button>
