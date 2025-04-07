@@ -64,6 +64,7 @@ export default function SearchFilters() {
 
   return (
     <div className=" md:w-[45rem] w-[20rem] rounded-2xl p-4 bg-pcfcsecondary shadow-md ">
+    
       <div className="flex flex-col md:flex-row w-full md:items-center space-y-8 md:space-y-0 py-2 md:justify-between">
         <div className="items-center w-full ">
           <div className="flex space-x-2">

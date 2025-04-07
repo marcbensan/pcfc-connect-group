@@ -44,6 +44,7 @@
   --color-pcfcsecondary: #ffb23f;
   --color-pcfctertiary: #ff9a00;
   --color-pcfcprimary: #275fb3;
+  --font-subheading: var(--font-anton);
 }
 
 :root {

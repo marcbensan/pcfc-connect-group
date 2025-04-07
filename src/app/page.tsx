@@ -1,5 +1,6 @@
 import { ExpandableCard } from "@/components/cards";
 import SearchFilters from "@/components/filters";
+import Image from "next/image";
 import { getLeaders } from "./actions/leaders";
 
 export default async function Home({
@@ -26,6 +27,16 @@ export default async function Home({
 
   return (
     <div className="flex flex-col items-center space-y-12 md:my-12">
+      <div className="flex flex-col text-center">
+        <h1 className="font-subheading text-4xl text-white">FIND A</h1>
+        <Image
+          src="/CONNECT.png"
+          width={250}
+          height={100}
+          alt="group"
+          className="mt-[-2.3rem] mb-[-3rem]"
+        />
+      </div>
       <SearchFilters />
       <ExpandableCard leaders={leaders} />
     </div>

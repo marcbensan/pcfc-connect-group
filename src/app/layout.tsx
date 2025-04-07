@@ -1,18 +1,14 @@
 import Navbar from "@/components/navbar";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Anton } from "next/font/google";
 
 import Footer from "@/components/footer";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const anton = Anton({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-anton",
 });
 
 export const metadata: Metadata = {
@@ -31,7 +27,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="globals.css" />
       </head>
       <body
-        className={`w-full antialiased bg-contain bg-[url(/bg-vertical.jpg)]`}
+        className={`${anton.variable} w-full antialiased bg-contain bg-[url(/bg-vertical.jpg)]`}
       >
         <Navbar />
         <div className="flex w-full py-8 justify-center overflow-hidden md:mb-32">
