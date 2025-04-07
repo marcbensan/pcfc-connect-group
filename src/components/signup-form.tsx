@@ -59,11 +59,11 @@ export default function SignupForm({ leader }: { leader?: Leader }) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 w-full rounded-lg  border-2 p-6 m-4"
+        className="space-y-8 w-full rounded-lg bg-pcfcwhite text-pcfcprimary font-caption p-6 m-4"
       >
-        <div className="flex flex-col space-y-2">
-          <h1 className="text-xl font-bold">Join {leader?.name}</h1>
-          <p className="text-sm text-gray-700">
+        <div className="flex flex-col  space-y-2">
+          <h1 className="text-xl font-extrabold">Join {leader?.name}</h1>
+          <p className="text-sm text-pcfcprimary/60">
             {leader?.day} | {leader?.time}
           </p>
         </div>
@@ -140,11 +140,11 @@ export default function SignupForm({ leader }: { leader?: Leader }) {
               <FormControl>
                 <Textarea
                   placeholder="Enter your message here."
-                  className="resize-none"
+                  className="resize-none "
                   {...field}
                 />
               </FormControl>
-              <FormDescription>
+              <FormDescription className="text-pcfcprimary/60">
                 Let us know if you have any concerns.
               </FormDescription>
               <FormMessage />
@@ -159,7 +159,7 @@ export default function SignupForm({ leader }: { leader?: Leader }) {
             <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
               <div className="space-y-0.5">
                 <FormLabel>Receive emails from PCFC</FormLabel>
-                <FormDescription>
+                <FormDescription className="text-pcfcprimary/60">
                   I consent PCFC to send me emails regarding any news, updates,
                   and upcoming events.
                 </FormDescription>
@@ -174,7 +174,10 @@ export default function SignupForm({ leader }: { leader?: Leader }) {
           )}
         />
         <hr />
-        <Button className="bg-blue-900 hover:bg-blue-950" type="submit">
+        <Button
+          className="bg-pcfcprimary rounded-full hover:bg-blue-950"
+          type="submit"
+        >
           Submit
         </Button>
       </form>

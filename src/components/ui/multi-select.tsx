@@ -184,7 +184,7 @@ export const MultiSelect = React.forwardRef<
             {...props}
             onClick={handleTogglePopover}
             className={cn(
-              "flex w-full p-1 rounded-xl border-1 border-pcfcprimary min-h-10 h-auto items-center justify-between bg-inherit hover:bg-inherit [&_svg]:pointer-events-auto",
+              "flex w-full p-1 font-caption rounded-xl border-1 border-pcfcprimary min-h-10 h-auto items-center justify-between bg-inherit hover:bg-inherit [&_svg]:pointer-events-auto",
               className
             )}
           >
@@ -199,7 +199,7 @@ export const MultiSelect = React.forwardRef<
                         className={cn(
                           isAnimating ? "animate-bounce" : "",
                           multiSelectVariants({ variant }),
-                          "p-2"
+                          "p-2 bg-pcfctertiary/30 border-pcfcprimary text-pcfcprimary"
                         )}
                         style={{ animationDuration: `${animation}s` }}
                       >
@@ -252,10 +252,10 @@ export const MultiSelect = React.forwardRef<
               </div>
             ) : (
               <div className="flex items-center justify-between w-full mx-auto">
-                <span className="text-sm text-muted-foreground mx-3">
+                <span className="text-md mx-3 text-pcfcprimary">
                   {placeholder}
                 </span>
-                <ChevronDown className="h-4 cursor-pointer text-muted-foreground mx-2" />
+                <ChevronDown className="h-4 cursor-pointer text-pcfcprimary mx-2" />
               </div>
             )}
           </Button>
@@ -265,12 +265,12 @@ export const MultiSelect = React.forwardRef<
           align="start"
           onEscapeKeyDown={() => setIsPopoverOpen(false)}
         >
-          <Command className="w-[18rem]">
+          <Command className="w-[18rem] bg-pcfcwhite ">
             <CommandInput
               placeholder="Search..."
               onKeyDown={handleInputKeyDown}
             />
-            <CommandList>
+            <CommandList className="bg-pcfcwhite">
               <CommandEmpty>No results found.</CommandEmpty>
               <CommandGroup>
                 {options.map((option) => {
@@ -279,11 +279,11 @@ export const MultiSelect = React.forwardRef<
                     <CommandItem
                       key={option.value}
                       onSelect={() => toggleOption(option.value)}
-                      className="cursor-pointer"
+                      className="cursor-pointer bg-pcfcwhite"
                     >
                       <div
                         className={cn(
-                          "mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
+                          "mr-2 flex h-4 w-4 bg-pcfcwhite items-center justify-center rounded-sm border border-primary",
                           isSelected
                             ? "bg-primary text-primary-foreground"
                             : "opacity-50 [&_svg]:invisible"
@@ -304,7 +304,7 @@ export const MultiSelect = React.forwardRef<
                     <>
                       <CommandItem
                         onSelect={handleClear}
-                        className="flex-1 justify-center cursor-pointer"
+                        className="flex-1 justify-center  cursor-pointer"
                       >
                         Clear
                       </CommandItem>

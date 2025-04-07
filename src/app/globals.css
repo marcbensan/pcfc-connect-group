@@ -44,7 +44,11 @@
   --color-pcfcsecondary: #ffb23f;
   --color-pcfctertiary: #ff9a00;
   --color-pcfcprimary: #275fb3;
+  --color-pcfcprimarydark: #072448;
+  --color-pcfcwhite: #fcf4e1;
   --font-subheading: var(--font-anton);
+  --font-caption: var(--font-dmsans);
+  --font-logo: var(--font-monasans);
 }
 
 :root {

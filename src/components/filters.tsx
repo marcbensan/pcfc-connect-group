@@ -63,8 +63,7 @@ export default function SearchFilters() {
   }
 
   return (
-    <div className=" md:w-[45rem] w-[20rem] rounded-2xl p-4 bg-pcfcsecondary shadow-md ">
-    
+    <div className=" md:w-[45rem] w-[20rem] font-caption text-pcfcprimary rounded-2xl p-4 bg-pcfcsecondary shadow-md ">
       <div className="flex flex-col md:flex-row w-full md:items-center space-y-8 md:space-y-0 py-2 md:justify-between">
         <div className="items-center w-full ">
           <div className="flex space-x-2">
@@ -77,7 +76,7 @@ export default function SearchFilters() {
             <div className="grid gap-1.5 leading-none">
               <label
                 htmlFor="online"
-                className="text-md font-medium text-blue-900 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                className="text-md font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
                 ONLINE
               </label>
@@ -111,14 +110,14 @@ export default function SearchFilters() {
       <div className="flex flex-row space-x-2 max-w-full">
         <Button
           onClick={handleSearch}
-          className="flex-grow my-2 bg-pcfcprimary hover:bg-blue-950"
+          className="flex-grow my-2 text-md rounded-full bg-pcfcprimary text-pcfcwhite hover:bg-blue-950"
         >
           Search
         </Button>
         <Button
           onClick={handleClearFilters}
-          variant="outline"
-          className="flex-grow my-2"
+          variant="secondary"
+          className="w-1/2 my-2 text-md bg-pcfcwhite rounded-full"
         >
           Clear Filters
         </Button>

@@ -1,12 +1,18 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
-    <div className="flex h-full w-full flex-col justify-center space-y-8 bg-blue-900 py-16 md:space-y-16">
+    <div className="flex h-full w-full flex-col font-caption justify-center space-y-8 bg-pcfcprimarydark py-16 md:space-y-16">
       <p className="whitespace-nowrap text-start md:text-center mx-8 text-3xl font-bold text-white md:text-5xl">
         GET IN TOUCH
       </p>
       <div className="grid grid-rows-2 items-start gap-8 px-8 md:grid-cols-2 md:grid-rows-1 md:px-24">
         <div className="space-y-4 md:space-y-8">
-          <div className="flex flex-row items-center space-x-4">
+          <Link
+            href="https://www.instagram.com/pcfctoronto/"
+            target="_blank"
+            className="flex flex-row items-center space-x-2"
+          >
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -21,9 +27,13 @@ export default function Footer() {
               </svg>
             </div>
             <p className="font-barlow text-3xl text-white">@pcfctoronto</p>
-          </div>
+          </Link>
 
-          <div className="flex flex-row items-center space-x-4">
+          <Link
+            href="https://www.facebook.com/PCFCTORONTO"
+            target="_blank"
+            className="flex flex-row items-center space-x-4"
+          >
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +48,7 @@ export default function Footer() {
               </svg>
             </div>
             <p className="font-barlow text-3xl text-white">PCFC Toronto</p>
-          </div>
+          </Link>
         </div>
       </div>
     </div>

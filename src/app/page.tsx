@@ -26,9 +26,9 @@ export default async function Home({
   });
 
   return (
-    <div className="flex flex-col items-center space-y-12 md:my-12">
+    <div className="flex flex-col items-center space-y-12 mb-20 md:my-12">
       <div className="flex flex-col text-center">
-        <h1 className="font-subheading text-4xl text-white">FIND A</h1>
+        <h1 className="font-subheading text-4xl text-pcfcwhite">FIND A</h1>
         <Image
           src="/CONNECT.png"
           width={250}

@@ -1,6 +1,6 @@
 import Navbar from "@/components/navbar";
 import type { Metadata } from "next";
-import { Anton } from "next/font/google";
+import { Anton, DM_Sans, Mona_Sans } from "next/font/google";
 
 import Footer from "@/components/footer";
 import "./globals.css";
@@ -9,6 +9,18 @@ const anton = Anton({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-anton",
+});
+
+const DMSans = DM_Sans({
+  subsets: ["latin"],
+  weight: "600",
+  variable: "--font-dmsans",
+});
+
+const monaSans = Mona_Sans({
+  subsets: ["latin"],
+  weight: "800",
+  variable: "--font-monasans",
 });
 
 export const metadata: Metadata = {
@@ -25,13 +37,14 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="stylesheet" href="globals.css" />
+        <link rel="icon" href="/logo-white.png" />
       </head>
       <body
-        className={`${anton.variable} w-full antialiased bg-contain bg-[url(/bg-vertical.jpg)]`}
+        className={`${anton.variable} ${DMSans.variable} w-full antialiased bg-contain bg-[url(/bg-vertical.jpg)]`}
       >
         <Navbar />
         <div className="flex w-full py-8 justify-center overflow-hidden md:mb-32">
-          <div className="z-5 shadow-md rounded-2xl ">{children}</div>
+          <div className="z-5">{children}</div>
         </div>
         <Footer />
       </body>
