@@ -1,7 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --font-display: "Inter", "sans-serif";
@@ -44,6 +41,14 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-pcfcsecondary: #ffb23f;
+  --color-pcfctertiary: #ff9a00;
+  --color-pcfcprimary: #275fb3;
+  --color-pcfcprimarydark: #072448;
+  --color-pcfcwhite: #fcf4e1;
+  --font-subheading: var(--font-anton);
+  --font-caption: var(--font-dmsans);
+  --font-logo: var(--font-monasans);
 }
 
 :root {
@@ -113,33 +118,4 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.552 0.016 285.938);
-}
-
-.custom-shape-divider-top-1743653415 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
-
-.custom-shape-divider-top-1743653415 svg {
-  position: relative;
-  display: block;
-  width: calc(300% + 1.3px);
-  height: 150px;
-}
-
-.custom-shape-divider-top-1743653415 .shape-fill {
-  fill: #1c398e;
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
 }

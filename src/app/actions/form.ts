@@ -17,7 +17,7 @@ const RESEND = new Resend(process.env.RESEND_API_URL);
 export async function sendEmail(
   userInfo: UserInfo,
   name: string
-): Promise<void> {
+) {
   const { data, error } = await RESEND.emails.send({
     from: "Marc Bensan <marc@updates.marcbensan.com>",
     to: ["euniceritchesdolor@gmail.com"],
@@ -25,11 +25,9 @@ export async function sendEmail(
     react: EmailTemplate({ user: userInfo, leader: name }),
   });
 
-  console.log(userInfo);
-
   if (error) {
-    console.log(error);
+    return {message: error};
   }
 
-  console.log(data);
+  return data
 }
