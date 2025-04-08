@@ -14,7 +14,7 @@ export default function MainHero() {
         />
         <h1 className="font-subheading text-3xl text-pcfcsecondary">
           LIFE IS BETTER{" "}
-          <span className="relative z-20 inline-block rounded-lg bg-blue-900/50 px-2 py-1 text-pcfcsecondary underline decoration-pcfcwhite decoration-[4px] underline-offset-[10px] backdrop-blur-sm">
+          <span className="relative z-20 inline-block rounded-lg bg-blue-900/50 px-2 py-1 text-pcfcsecondary underline decoration-pcfcwhite decoration-[3px] underline-offset-[14px] backdrop-blur-sm">
             TOGETHER
           </span>
         </h1>
