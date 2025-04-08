@@ -69,31 +69,25 @@ export default function SearchFilters() {
               onCheckedChange={handleOnlineClick}
               id="online"
             />
-            <label
-              htmlFor="online"
-              className="text-md font-caption leading-none "
-            >
-              {isOnline ? "ONLINE" : "IN-PERSON"}
-            </label>
           </div>
         </div>
         <div className="space-y-4 items-start flex-grow flex w-full flex-col md:flex-row md:space-x-4">
+          <div className={`w-full ${!isOnline ? "md:w-full" : "md:w-1/2"}`}>
+            <MultiSelect
+              options={days}
+              onValueChange={setSelectedDays}
+              defaultValue={selectedDays}
+              placeholder="Days"
+              variant="default"
+              animation={0}
+            />
+          </div>
           <div className={`${isOnline ? "hidden" : ""} w-full`}>
             <MultiSelect
               options={locations}
               onValueChange={setSelectedLocations}
               defaultValue={selectedLocations}
               placeholder="Locations"
-              variant="default"
-              animation={0}
-            />
-          </div>
-          <div className="w-full">
-            <MultiSelect
-              options={days}
-              onValueChange={setSelectedDays}
-              defaultValue={selectedDays}
-              placeholder="Days"
               variant="default"
               animation={0}
             />
