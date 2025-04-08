@@ -56,7 +56,7 @@ export default function SearchFilters() {
     setIsOnline(false);
     setSelectedDays([]);
     setSelectedLocations([]);
-    router.push("/");
+    router.push("/leaders");
   }
 
   return (
