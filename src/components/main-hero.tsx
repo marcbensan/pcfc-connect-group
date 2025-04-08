@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 
 export default function MainHero() {
   return (
-    <div className="flex flex-col space-y-12">
+    <div className="flex flex-col space-y-12 px-8">
       <div className="flex flex-col items-center justify-center space-y-6">
         <Image
           src="/connect-group.png"
@@ -33,7 +33,7 @@ export default function MainHero() {
         width={1000}
         height={1000}
         alt="hero-pic"
-        className="object-contain h-60"
+        className="object-contain h-70 mb-12"
       />
     </div>
   );
