@@ -3,9 +3,7 @@
 import { images } from "@/lib/data/images";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
-import Link from "next/link";
 import { useRef } from "react";
-import { Button } from "./ui/button";
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
 export default function InformationHero() {
@@ -36,11 +34,6 @@ export default function InformationHero() {
             FAMILY
           </span>
         </h1>
-        <Link href="/leaders" className="w-full">
-          <Button className="w-full rounded-xl p-8 bg-pcfcsecondary text-xl font-subheading">
-            FIND MY GROUP
-          </Button>
-        </Link>
       </div>
       <Carousel plugins={[plugin.current]}>
         <CarouselContent>
