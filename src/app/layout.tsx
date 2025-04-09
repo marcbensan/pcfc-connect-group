@@ -44,7 +44,7 @@ export default function RootLayout({
       >
         <Navbar />
         <div className="flex w-full justify-center">
-          <div className="z-5">{children}</div>
+          <div className="z-5 w-full">{children}</div>
         </div>
         <Footer />
       </body>

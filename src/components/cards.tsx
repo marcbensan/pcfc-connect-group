@@ -116,13 +116,13 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] | undefined }) {
               </motion.div>
             </div>
           ) : null}
-          <ul className="space-y-4 mx-auto w-full font-caption text-pcfcprimary">
+          <ul className="space-y-4 w-full flex flex-col md:items-center md:w-[40rem] font-caption text-pcfcprimary">
             {leaders.map((card, index) => (
               <motion.div
                 layoutId={`card-${card.name}-${id}`}
                 key={`card-${card.name}-${id}`}
                 onClick={() => setActive(card)}
-                className="p-4 flex border-1 flex-row justify-between bg-pcfcwhite shadow-sm items-center hover:bg-pcfcwhite/90 rounded-full cursor-pointer"
+                className="p-4 flex border-1 md:w-[45rem] flex-row justify-between bg-pcfcwhite shadow-sm items-center hover:bg-pcfcwhite/90 rounded-full cursor-pointer"
               >
                 <div
                   className={`flex gap-4 flex-row w-full ${
