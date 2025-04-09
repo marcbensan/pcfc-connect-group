@@ -60,7 +60,7 @@ export default function SearchFilters() {
   }
 
   return (
-    <div className=" md:w-[45rem] w-[20rem] font-caption text-pcfcprimary rounded-2xl p-4 md:p-6 bg-pcfcsecondary shadow-md ">
+    <div className=" md:w-[45rem] w-[27rem] font-caption text-pcfcprimary rounded-2xl p-4 md:p-6 bg-pcfcsecondary shadow-md ">
       <div className="flex flex-col w-full md:items-center space-y-8 md:space-y-0 py-2 md:justify-between">
         <div className="items-center w-full ">
           <div className="flex space-x-2 items-center md:mb-8">

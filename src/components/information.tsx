@@ -10,8 +10,9 @@ export default function InformationHero() {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
   return (
-    <div className="flex flex-col space-y-12 bg-pcfcwhite px-12 py-16">
-      <div className="flex flex-col space-y-6">
+    <div className="relative flex flex-col bg-pcfcwhite px-12 py-16">
+      <div className="absolute inset-0 z-0 bg-[url(/white-bg.png)] opacity-40 pointer-events-none" />
+      <div className="flex flex-col space-y-6 z-1">
         <div className="flex flex-col">
           <h1 className="text-5xl font-subheading px-4 mb-[-10px] text-pcfcprimary">
             <strong>WHAT IS A</strong>
@@ -44,7 +45,7 @@ export default function InformationHero() {
                 height={1000}
                 alt="sample-img"
                 src={img}
-                className="grayscale rounded-lg"
+                className="grayscale rounded-lg z-1 mt-8"
               />
             </CarouselItem>
           ))}
