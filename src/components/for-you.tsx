@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 
 export default function ForYouHero() {
   return (
-    <div className="relative flex flex-col px-12 py-16 justify-center items-center">
+    <div className="relative flex flex-col px-8 py-16 justify-center items-center">
       <div className="absolute inset-0 z-1 bg-[url(/white-bg.png)] bg-cover pointer-events-none" />
       <div className="md:w-[50%] z-1">
         <div className="flex z-10 flex-col items-center justify-center space-y-6">
