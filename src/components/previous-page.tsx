@@ -8,7 +8,7 @@ export default function PreviousPage() {
   return (
     <button
       onClick={() => router.back()}
-      className="flex flex-row w-24 space-x-4 cursor-pointer text-pcfcwhite font-subheading"
+      className="flex flex-row w-24 cursor-pointer text-pcfcprimary font-subheading"
     >
       <ChevronLeftIcon className="mr-2" /> Back
     </button>

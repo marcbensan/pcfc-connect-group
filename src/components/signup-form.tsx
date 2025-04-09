@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Leader } from "@/lib/types/leader";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -48,6 +49,8 @@ export default function SignupForm({ leader }: { leader?: Leader }) {
       receiveEmail: false,
     },
   });
+
+  const router = useRouter();
 
   function onSubmit(values: z.infer<typeof UserSchema>) {
     try {
@@ -161,12 +164,22 @@ export default function SignupForm({ leader }: { leader?: Leader }) {
         />
 
         <hr />
-        <Button
-          className="bg-pcfcprimary rounded-full hover:bg-blue-950"
-          type="submit"
-        >
-          Submit
-        </Button>
+        <div className="flex flex-row justify-end space-x-2">
+          <Button
+            className="rounded-full bg-white text-pcfcprimary hover:bg-blue-950"
+            onClick={() => router.back()}
+            variant="secondary"
+            type="button"
+          >
+            Cancel
+          </Button>
+          <Button
+            className="bg-pcfcprimary rounded-full hover:bg-blue-950"
+            type="submit"
+          >
+            Submit
+          </Button>
+        </div>
       </form>
     </Form>
   );

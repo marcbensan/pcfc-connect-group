@@ -105,7 +105,7 @@ export default function SearchFilters() {
         <Button
           onClick={handleClearFilters}
           variant="secondary"
-          className="w-1/2 my-2 text-md bg-pcfcwhite rounded-full"
+          className="w-1/2 my-2 text-md text-pcfcprimary bg-pcfcwhite rounded-full"
         >
           Clear Filters
         </Button>
