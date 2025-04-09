@@ -11,7 +11,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { Leader } from "@/lib/types/leader";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -68,9 +67,9 @@ export default function SignupForm({ leader }: { leader?: Leader }) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 w-full rounded-lg bg-pcfcwhite text-pcfcprimary font-caption p-6 m-4"
+        className="space-y-8 w-full md:w-[40rem] rounded-lg bg-pcfcwhite text-pcfcprimary font-caption p-6 mt-4"
       >
-        <div className="flex flex-col  space-y-2">
+        <div className="flex flex-col space-y-2">
           <h1 className="text-xl font-extrabold">Join {leader?.name}</h1>
           <p className="text-sm text-pcfcprimary/60">
             {leader?.day} | {leader?.time}
@@ -161,27 +160,6 @@ export default function SignupForm({ leader }: { leader?: Leader }) {
           )}
         />
 
-        <FormField
-          control={form.control}
-          name="receiveEmail"
-          render={({ field }) => (
-            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
-              <div className="space-y-0.5">
-                <FormLabel>Receive emails from PCFC</FormLabel>
-                <FormDescription className="text-pcfcprimary/60">
-                  I consent PCFC to send me emails regarding any news, updates,
-                  and upcoming events.
-                </FormDescription>
-              </div>
-              <FormControl>
-                <Switch
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-            </FormItem>
-          )}
-        />
         <hr />
         <Button
           className="bg-pcfcprimary rounded-full hover:bg-blue-950"

@@ -12,11 +12,9 @@ export default async function SignUpFormPage({
 
   const leaderSelected = await getLeader(leaderId);
   return (
-    <div className="flex flex-col  mb-8">
+    <div className="flex flex-col my-4">
       <PreviousPage />
-      <div className="flex justify-center">
-        <SignupForm leader={leaderSelected} />;
-      </div>
+      <SignupForm leader={leaderSelected} />;
     </div>
   );
 }

@@ -56,11 +56,11 @@ export default function SearchFilters() {
     setIsOnline(false);
     setSelectedDays([]);
     setSelectedLocations([]);
-    router.push("/");
+    router.push("/leaders");
   }
 
   return (
-    <div className=" md:w-[45rem] w-[20rem] font-caption text-pcfcprimary rounded-2xl p-4 md:p-6 bg-pcfcsecondary shadow-md ">
+    <div className=" md:w-[45rem] w-full font-caption text-pcfcprimary rounded-2xl p-4 md:p-6 bg-pcfcsecondary shadow-md ">
       <div className="flex flex-col w-full md:items-center space-y-8 md:space-y-0 py-2 md:justify-between">
         <div className="items-center w-full ">
           <div className="flex space-x-2 items-center md:mb-8">
@@ -71,7 +71,7 @@ export default function SearchFilters() {
             />
           </div>
         </div>
-        <div className="space-y-4 items-start flex-grow flex w-full flex-col md:flex-row md:space-x-4">
+        <div className="space-y-4 items-start flex w-full flex-col md:flex-row md:space-x-4">
           <div className={`w-full ${!isOnline ? "md:w-full" : "md:w-1/2"}`}>
             <MultiSelect
               options={days}
