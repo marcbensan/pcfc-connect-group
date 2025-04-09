@@ -43,7 +43,7 @@ export default function RootLayout({
         className={`${anton.variable} ${DMSans.variable} ${monaSans.variable} w-full antialiased bg-contain bg-[url(/bg-vertical.jpg)] md:bg-[url(/bg-horizontal.jpg)]`}
       >
         <Navbar />
-        <div className="flex w-full justify-center overflow-hidden md:mb-32">
+        <div className="flex w-full justify-center">
           <div className="z-5">{children}</div>
         </div>
         <Footer />
