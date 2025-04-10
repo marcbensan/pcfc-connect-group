@@ -74,11 +74,14 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] | undefined }) {
                 >
                   <Image
                     priority
-                    width={200}
-                    height={200}
-                    src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
+                    width={1000}
+                    height={1000}
+                    src={
+                      active.img_url ||
+                      `https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png`
+                    }
                     alt={active.name}
-                    className="size-80 md:size-60 object-cover rounded-full object-top mb-8 md:mb-0 md:mt-4"
+                    className="size-90 md:size-60 object-cover rounded-full object-top mb-8 md:mb-0 md:mt-4"
                   />
                 </motion.div>
 
@@ -136,9 +139,12 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] | undefined }) {
                     }`}
                   >
                     <Image
-                      width={100}
-                      height={100}
-                      src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
+                      width={1000}
+                      height={1000}
+                      src={
+                        card.img_url ||
+                        `https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png`
+                      }
                       alt={card.name}
                       className={`h-14 w-14 rounded-full object-cover object-top`}
                     />

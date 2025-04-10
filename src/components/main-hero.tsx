@@ -26,7 +26,7 @@ export default function MainHero() {
           </p>
           <Link href="/leaders" className="w-full z-1">
             <Button className="w-full rounded-xl p-8 bg-pcfcsecondary text-xl font-subheading">
-              FIND MY GROUP
+              JOIN A GROUP
             </Button>
           </Link>
         </div>

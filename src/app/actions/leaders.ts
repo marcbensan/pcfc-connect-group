@@ -11,7 +11,8 @@ export async function getSupabaseLeaders() {
     console.error(error);
   }
 
-  return leaders;
+  // Sort leaders by name alphabetically
+  return leaders?.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 export async function getLeaders({
@@ -81,7 +82,8 @@ export async function getLeaders({
     return true; // Include the leader if all conditions pass
   });
 
-  return filteredLeaders;
+  // Sort filtered leaders by name alphabetically
+  return filteredLeaders?.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 export async function getLeader(id: string | undefined) {

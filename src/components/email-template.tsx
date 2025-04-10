@@ -52,7 +52,7 @@ export default function EmailTemplate({
                     textAlign: "center",
                   }}
                 >
-                  Hello Please,
+                  Hello,
                 </Heading>
                 <Heading
                   as="h2"
