@@ -12,7 +12,7 @@ export default function SuccessPage() {
         </p>
         <Link href="/">
           <Button className="p-8 bg-pcfcprimary font-subheading text-lg text-pcfcwhite rounded-full hover:bg-blue-800">
-            Return Home
+            Go Back Home
           </Button>
         </Link>
       </div>
