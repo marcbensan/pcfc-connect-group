@@ -81,7 +81,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] | undefined }) {
                       `https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png`
                     }
                     alt={active.name}
-                    className="size-110 md:size-60 object-cover rounded-full object-top mb-8 md:mb-0 md:mt-4"
+                    className="size-90 md:size-60 object-cover rounded-full object-top mb-8 md:mb-0 md:mt-4"
                   />
                 </motion.div>
 
