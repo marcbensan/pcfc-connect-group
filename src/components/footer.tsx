@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-pcfcprimarydark font-caption py-20 text-white">
+    <footer className="bg-pcfcprimarydark font-caption py-20 text-pcfcwhite">
       <div className="container px-6 md:px-12">
         {/* Top Section */}
         <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
@@ -23,8 +23,8 @@ export default function Footer() {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 448 512"
-                width="30"
-                height="30"
+                width="35"
+                height="35"
               >
                 <path
                   fill="currentColor"

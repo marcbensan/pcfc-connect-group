@@ -6,4 +6,5 @@ export interface Leader {
   isOnline: boolean;
   location: string;
   description: string;
+  img_url: string;
 }
