@@ -1,7 +1,9 @@
-import React from 'react'
+import { LeadersTable } from "./leaders-table";
 
 export default function Admin() {
   return (
-    <div>Admin</div>
-  )
+    <div className="min-h-screen px-8 bg-pcfcwhite">
+      <LeadersTable />
+    </div>
+  );
 }
