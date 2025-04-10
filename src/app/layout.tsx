@@ -40,7 +40,7 @@ export default function RootLayout({
         <link rel="icon" href="/logo-white.png" />
       </head>
       <body
-        className={`${anton.variable} ${DMSans.variable} ${monaSans.variable} w-full antialiased bg-contain bg-[url(/bg-vertical.jpg)] md:bg-[url(/bg-horizontal.jpg)]`}
+        className={`${anton.variable} ${DMSans.variable} ${monaSans.variable} w-full bg-contain bg-[url(/bg-vertical.jpg)] md:bg-[url(/bg-horizontal.jpg)]`}
       >
         <Navbar />
         <div className="flex w-full justify-center">

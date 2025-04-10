@@ -116,7 +116,7 @@ export const MultiSelect = React.forwardRef<
       defaultValue = [],
       placeholder = "Select options",
       animation = 0,
-      maxCount = 2,
+      maxCount = 3,
       modalPopover = false,
       className,
       ...props
@@ -162,13 +162,13 @@ export const MultiSelect = React.forwardRef<
             {...props}
             onClick={handleTogglePopover}
             className={cn(
-              "flex w-[19.5rem] p-1 font-caption rounded-xl border-1 border-pcfcprimary min-h-10 h-auto items-center justify-between bg-inherit hover:bg-inherit [&_svg]:pointer-events-auto",
+              "flex w-full p-1 font-caption rounded-xl border-1 border-pcfcprimary min-h-10 h-auto items-center justify-between bg-inherit hover:bg-inherit [&_svg]:pointer-events-auto",
               className
             )}
           >
             {selectedValues.length > 0 ? (
               <div className="flex justify-between items-center w-full">
-                <div className="flex whitespace-nowrap overflow-hidden max-w-[15rem] md:max-w-[16rem] items-center">
+                <div className="flex whitespace-nowrap overflow-hidden max-w-[90%] md:max-w-[16rem] items-center">
                   {selectedValues.slice(0, maxCount).map((value) => {
                     const option = options.find((o) => o.value === value);
                     return (
