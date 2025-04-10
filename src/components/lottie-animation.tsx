@@ -1,11 +1,12 @@
 "use client";
 
+import animationData from "@/lib/data/success.json"; // Correctly import the JSON file
 import { useLottie } from "lottie-react";
 
 const lottieOptions = {
   loop: false,
   autoplay: true,
-  animationData: require("@/lib/data/success.json"),
+  animationData,
 };
 
 const LottieAnimation: React.FC = () => {

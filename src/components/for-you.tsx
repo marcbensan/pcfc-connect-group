@@ -22,7 +22,7 @@ export default function ForYouHero() {
             FOR YOU
           </h1>
           <p className="text-md font-captio md:text-xl text-pcfctertiary my-8">
-            No matter your background or interests, there's a Connect Group
+            No matter your background or interests, there&apos;s a Connect Group
             where you can belong.
           </p>
         </div>
