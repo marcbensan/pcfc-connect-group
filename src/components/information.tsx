@@ -26,9 +26,11 @@ export default function InformationHero() {
             />
           </div>
           <p className="text-md md:text-lg font-caption text-pcfctertiary">
-            Connect Groups are <strong>a community</strong> of{" "}
-            <strong>people who build each other up</strong> through
-            relationship, prayer, and the Word.
+            A Connect Group is a small community brought together by shared
+            interests. It&apos;s a place to build life-long relationships, study
+            God&apos;s Word, and apply it in daily life. More than just
+            learning, we live out our faith—encouraging, supporting, and
+            empowering one another to grow and disciple others.
           </p>
           <h1 className="font-subheading text-start text-3xl w-full text-pcfcprimary">
             IT&apos;S WHERE STRANGERS TURN INTO{" "}

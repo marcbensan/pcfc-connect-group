@@ -16,14 +16,14 @@ export default function ForYouHero() {
             width={1000}
             height={500}
             alt="connect-groups"
-            className="my-[-1rem] md:my-[-4rem]"
+            className="my-[-1.5rem] md:my-[-4rem]"
           />
           <h1 className="text-5xl font-subheading px-4 mt-[-15px] text-pcfcwhite">
             FOR YOU
           </h1>
           <p className="text-md font-captio md:text-xl text-pcfctertiary my-8">
-            No matter your background or interests, there&apos;s a Connect Group
-            where you can belong.
+            No matter your age, background, or interests, there is a Connect
+            Group where you can belong.
           </p>
         </div>
         <Image
