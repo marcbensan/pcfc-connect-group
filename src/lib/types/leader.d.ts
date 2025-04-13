@@ -1,5 +1,6 @@
 export interface Leader {
-  id: string;
+  id: number;
+  created_at: string;
   name: string;
   day: string;
   time: string;
@@ -7,4 +8,5 @@ export interface Leader {
   location: string;
   description: string;
   img_url: string;
+  is_available: boolean;
 }
