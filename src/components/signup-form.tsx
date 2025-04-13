@@ -166,13 +166,6 @@ export default function SignupForm({ leader }: { leader?: Leader }) {
         <hr />
         <div className="flex flex-row justify-end space-x-2">
           <Button
-            type="button"
-            variant="outline"
-            onClick={() => router.push("/success")}
-          >
-            Sample Submit
-          </Button>
-          <Button
             className="rounded-full bg-white text-pcfcprimary hover:bg-blue-950"
             onClick={() => router.back()}
             variant="secondary"

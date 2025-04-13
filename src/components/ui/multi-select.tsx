@@ -227,7 +227,7 @@ export const MultiSelect = React.forwardRef<
           align="start"
           onEscapeKeyDown={() => setIsPopoverOpen(false)}
         >
-          <Command className="min-w-[24rem] bg-pcfcwhite ">
+          <Command className="min-w-[17rem] w-full bg-pcfcwhite ">
             <CommandList className="bg-pcfcwhite">
               <CommandEmpty>No results found.</CommandEmpty>
               <CommandGroup heading={placeholder}>

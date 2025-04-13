@@ -26,13 +26,15 @@ export default function ForYouHero() {
             Group where you can belong.
           </p>
         </div>
-        <Image
-          src="/group-types.png"
-          width={1000}
-          height={1000}
-          alt="hero-pic"
-          className="object-contain justify-center h-72 mb-12 z-1 md:size-[40rem]"
-        />
+        <div className="flex items-center justify-center">
+          <Image
+            src="/group-types.png"
+            width={1000}
+            height={1000}
+            alt="hero-pic"
+            className="object-contain justify-center h-72 mb-12 z-1 md:size-[40rem]"
+          />
+        </div>
         <Link href="/leaders" className="w-full z-1">
           <Button className="w-full rounded-xl p-8 bg-pcfcsecondary text-xl font-subheading">
             FIND MY GROUP
