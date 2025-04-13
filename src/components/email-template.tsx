@@ -111,15 +111,6 @@ export default function EmailTemplate({
               </Column>
             </Row>
           </Section>
-
-          <Section style={containerImageFooter}>
-            <img
-              width={620}
-              src="https://pokewalls.wordpress.com/wp-content/uploads/2011/01/94gengar1920x1200.jpg?w=400"
-              alt="Yelp footer decoration"
-            />
-          </Section>
-
           <Text
             style={{
               textAlign: "center",
@@ -157,8 +148,4 @@ const image = {
 
 const boxInfos = {
   padding: "20px",
-};
-
-const containerImageFooter = {
-  padding: "45px 0 0 0",
 };
