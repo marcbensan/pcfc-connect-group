@@ -46,7 +46,7 @@ export default function RootLayout({
         <Toaster className="bg-green-500" richColors closeButton />
         <Navbar />
         <div className="flex w-full justify-center">
-          <div className="z-5 w-full">{children}</div>
+          <div className="z-5 w-full min-h-screen">{children}</div>
         </div>
         <Footer />
       </body>

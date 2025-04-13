@@ -16,23 +16,25 @@ export default function ForYouHero() {
             width={1000}
             height={500}
             alt="connect-groups"
-            className="my-[-1rem] md:my-[-4rem]"
+            className="my-[-1.5rem] md:my-[-4rem]"
           />
           <h1 className="text-5xl font-subheading px-4 mt-[-15px] text-pcfcwhite">
             FOR YOU
           </h1>
           <p className="text-md font-captio md:text-xl text-pcfctertiary my-8">
-            No matter your background or interests, there&apos;s a Connect Group
-            where you can belong.
+            No matter your age, background, or interests, there is a Connect
+            Group where you can belong.
           </p>
         </div>
-        <Image
-          src="/group-types.png"
-          width={1000}
-          height={1000}
-          alt="hero-pic"
-          className="object-contain justify-center h-72 mb-12 z-1 md:size-[40rem]"
-        />
+        <div className="flex items-center justify-center">
+          <Image
+            src="/group-types.png"
+            width={1000}
+            height={1000}
+            alt="hero-pic"
+            className="object-contain justify-center h-72 mb-12 z-1 md:size-[40rem]"
+          />
+        </div>
         <Link href="/leaders" className="w-full z-1">
           <Button className="w-full rounded-xl p-8 bg-pcfcsecondary text-xl font-subheading">
             FIND MY GROUP

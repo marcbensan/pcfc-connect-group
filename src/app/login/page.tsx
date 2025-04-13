@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 
 export default function LoginPage() {
   return (
-    <form className="z-10">
+    <form className="z-10 flex items-center min-h-screen justify-center">
       <Card className="w-[20rem] bg-pcfcwhite text-pcfcprimary font-caption my-8 py-8">
         <CardHeader>
           <CardTitle className="text-2xl font-caption">Admin Login</CardTitle>

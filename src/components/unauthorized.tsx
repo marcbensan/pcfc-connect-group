@@ -33,7 +33,7 @@ export function Unauthorized({
           {description}
         </CardDescription>
       </CardHeader>
-      <CardContent className="mt-6">
+      <CardContent className="mt-6 ">
         <Button
           className="px-6 py-2 bg-pcfcprimary text-white rounded-full hover:bg-blue-80 0"
           onClick={onButtonClick || (() => router.push("/"))}

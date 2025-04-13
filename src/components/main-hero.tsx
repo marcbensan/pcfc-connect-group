@@ -14,15 +14,18 @@ export default function MainHero() {
             height={1000}
             alt="connect-groups"
           />
-          <h1 className="font-subheading text-3xl text-pcfcsecondary">
-            LIFE IS BETTER{" "}
-            <span className="relative z-20 inline-block rounded-lg bg-blue-900/50 px-2 py-1 text-pcfcsecondary underline decoration-pcfcwhite decoration-[3px] underline-offset-[14px] backdrop-blur-sm">
-              TOGETHER
+          <h1 className="font-subheading md:text-center text-4xl text-pcfcsecondary">
+            FAITH GROWS BEST IN{" "}
+            <span className="relative z-20 inline-block rounded-lg bg-blue-900/50 px-2 py-1 text-pcfcsecondary underline decoration-pcfcwhite decoration-[3px] underline-offset-[4px] backdrop-blur-sm">
+              COMMUNITY,
             </span>
+            NOT IN ISOLATION.
           </h1>
           <p className="text-md md:text-lg font-caption text-pcfctertiary">
-            be in a community to spiritually grow and live out God&apos;s
-            purpose and calling.
+            We believe you were created to grow spiritually so you can fulfill
+            God&apos;s purpose and calling—but growth doesn&apos;t happen in
+            isolation. Faith is a journey we take together—learning, applying,
+            and walking side by side.
           </p>
           <Link href="/leaders" className="w-full z-1">
             <Button className="w-full rounded-xl p-8 bg-pcfcsecondary text-xl font-subheading">
