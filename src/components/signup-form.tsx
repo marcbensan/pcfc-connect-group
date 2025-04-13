@@ -55,11 +55,7 @@ export default function SignupForm({ leader }: { leader?: Leader }) {
   function onSubmit(values: z.infer<typeof UserSchema>) {
     try {
       sendEmail(values, leader?.name || "-");
-      toast(
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        </pre>
-      );
+      router.push("/success");
     } catch (error) {
       console.error("Form submission error", error);
       toast.error("Failed to submit the form. Please try again.");
