@@ -27,7 +27,7 @@ const monaSans = Mona_Sans({
 export const metadata: Metadata = {
   title: "PCFC Connect Group",
   description:
-    "Sign up and belong to a small group where you can grow in faith.",
+    "Sign up and belong to a small group where you can grow in faith. A Connect Group is a small community brought together by shared interests. It's a place to build life-long relationships, study God's Word, and apply it in daily life. More than just learning, we live out our faith—encouraging, supporting, and empowering one another to grow and disciple others.",
 };
 
 export default function RootLayout({
