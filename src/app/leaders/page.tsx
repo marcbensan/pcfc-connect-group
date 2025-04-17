@@ -1,4 +1,4 @@
-import { getLeaders } from "@/app/actions/leaders";
+import { filterLeaders } from "@/app/actions/leaders";
 import { ExpandableCard } from "@/components/cards";
 import SearchFilters from "@/components/filters";
 import Image from "next/image";
@@ -19,7 +19,7 @@ export default async function Home({
     : undefined;
   const daysValue = days ? (days as string).split(",") : undefined;
 
-  const leaders = await getLeaders({
+  const leaders = await filterLeaders({
     online: onlineBool,
     locations: locationsValue,
     days: daysValue,

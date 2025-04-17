@@ -1,6 +1,6 @@
 export interface Leader {
-  id: number;
-  created_at: string;
+  id: string;
+  createdAt: string;
   name: string;
   day: string;
   time: string;
