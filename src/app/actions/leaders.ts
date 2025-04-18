@@ -4,6 +4,18 @@ import connectDB from "@/lib/db";
 import leadersModel from "@/lib/models/leadersModel";
 import { Leader } from "@/lib/types/leader";
 
+export async function getAllLeaders() {
+  await connectDB();
+  try {
+    const leaders = await leadersModel.find().exec();
+    const parsed = JSON.parse(JSON.stringify(leaders));
+    return parsed;
+  } catch (err) {
+    console.error("Error fetching leaders:", err);
+    return [];
+  }
+}
+
 export async function getLeaders() {
   await connectDB();
   try {
@@ -16,9 +28,6 @@ export async function getLeaders() {
   }
 }
 
-/**
- * Gets filtered leaders based on search parameters
- */
 export async function filterLeaders({
   online,
   locations,
