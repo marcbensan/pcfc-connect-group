@@ -4,8 +4,8 @@ import { MultiselectOption } from "@/lib/types/filters";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { Button } from "./ui/button";
+import { FilterSwitch } from "./ui/filter-switch";
 import { MultiSelect } from "./ui/multi-select";
-import { Switch } from "./ui/switch";
 
 const days: MultiselectOption[] = [
   { label: "Sunday", value: "sunday" },
@@ -64,7 +64,7 @@ export default function SearchFilters() {
       <div className="flex flex-col w-full md:items-center space-y-8 md:space-y-0 py-2 md:justify-between">
         <div className="items-center w-full ">
           <div className="flex space-x-2 items-center md:mb-8">
-            <Switch
+            <FilterSwitch
               checked={isOnline}
               onCheckedChange={handleOnlineClick}
               id="online"

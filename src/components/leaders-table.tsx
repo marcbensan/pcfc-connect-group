@@ -34,6 +34,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Leader } from "@/lib/models/leadersModel";
+import { useRouter } from "next/navigation";
 
 export const columns: ColumnDef<Leader>[] = [
   {
@@ -115,6 +116,8 @@ export function LeadersTable({ data }: { data: Leader[] }) {
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
+  const router = useRouter();
+
   const table = useReactTable({
     data,
     columns,
@@ -136,17 +139,18 @@ export function LeadersTable({ data }: { data: Leader[] }) {
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 space-x-4">
         <Input
-          placeholder="Filter by name..."
+          placeholder="Search by name..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="w-full"
         />
+        <Button onClick={() => router.push("/admin/create")}>Add Leader</Button>
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md border bg-white">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -200,11 +204,7 @@ export function LeadersTable({ data }: { data: Leader[] }) {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
+      <div className="flex items-center justify-start space-x-2 py-4">
         <div className="space-x-2">
           <Button
             variant="outline"

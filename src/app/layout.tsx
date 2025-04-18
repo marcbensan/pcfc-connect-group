@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Anton, DM_Sans, Mona_Sans } from "next/font/google";
 
 import Footer from "@/components/footer";
-import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 const anton = Anton({
@@ -43,7 +42,6 @@ export default function RootLayout({
       <body
         className={`${anton.variable} ${DMSans.variable} ${monaSans.variable} w-full bg-contain bg-[url(/bg-vertical.jpg)] md:bg-[url(/bg-horizontal.jpg)]`}
       >
-        <Toaster className="bg-green-500" richColors closeButton />
         <Navbar />
         <div className="flex w-full justify-center">
           <div className="z-5 w-full min-h-screen">{children}</div>
