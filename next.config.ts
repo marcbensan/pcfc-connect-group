@@ -11,6 +11,8 @@ const nextConfig: NextConfig = {
       "img.freepik.com",
       "pokewalls.wordpress.com",
       "eistlpmaeddcbkhclaaj.supabase.co",
+      "res.cloudinary.com",
+      "res-console.cloudinary.com",
     ],
   },
 };

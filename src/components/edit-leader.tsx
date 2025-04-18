@@ -11,11 +11,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Leader } from "@/lib/models/leadersModel";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CldUploadWidget } from "next-cloudinary";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Label } from "./ui/label";
@@ -47,11 +46,9 @@ export const LeaderSchema = z.object({
     .string()
     .min(1, { message: "Description is required" })
     .max(100, { message: "Description must not be over 100 characters" }),
-  imgUrl: z.string(),
 });
 
-export default function CreateLeader() {
-  const [img, setImg] = useState<string>("");
+export default function EditLeader({ leader }: { leader: Leader }) {
   const form = useForm<z.infer<typeof LeaderSchema>>({
     resolver: zodResolver(LeaderSchema),
     defaultValues: {
@@ -69,8 +66,7 @@ export default function CreateLeader() {
 
   function onSubmit(values: z.infer<typeof LeaderSchema>) {
     try {
-      sendEmail(values, leader?.name || "-");
-      router.push("/success");
+      console.log(values);
     } catch (error) {
       console.error("Form submission error", error);
     }
@@ -89,41 +85,23 @@ export default function CreateLeader() {
         <CldUploadWidget
           uploadPreset="ml_default"
           options={{ sources: ["local"] }}
-          onSuccess={(result) => {
-            if (
-              typeof result.info === "object" &&
-              "secure_url" in result.info
-            ) {
-              setImg(result.info.secure_url);
-            }
-          }}
+         
         >
-          {({ open }) => (
-            <>
-              {img ? (
-                <div className="grid w-full items-center gap-1.5">
-                  <Label htmlFor="picture">Leader Image</Label>
-                  <Image
-                    src={img}
-                    width={500}
-                    height={500}
-                    alt="leader-pic"
-                    className="size-20"
-                  />
-                </div>
-              ) : (
-                <div className="flex justify-center w-full">
-                  <Image
-                    src="https://res.cloudinary.com/don7shges/image/upload/v1744995828/Untitled_design_ujueue.png"
-                    width={500}
-                    height={500}
-                    alt="leader-pic"
-                    className="size-60 rounded-full"
-                  />
-                </div>
-              )}
-            </>
-          )}
+          {({ open }) => {
+            return (
+              <div className="grid w-full  items-center gap-1.5">
+                <Label htmlFor="picture">Leader Image</Label>
+                <Button
+                  id="picture"
+                  variant="outline"
+                  className="bg-pcfcprimary py-16 w-full"
+                  onClick={() => open()}
+                >
+                  Upload an image
+                </Button>
+              </div>
+            );
+          }}
         </CldUploadWidget>
 
         <FormField
