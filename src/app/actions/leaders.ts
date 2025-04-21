@@ -1,8 +1,7 @@
 "use server";
 
 import connectDB from "@/lib/db";
-import leadersModel from "@/lib/models/leadersModel";
-import { Leader } from "@/lib/types/leader";
+import leadersModel, { Leader } from "@/lib/models/leadersModel";
 
 export async function getAllLeaders() {
   await connectDB();
@@ -102,11 +101,7 @@ export async function filterLeaders({
   });
 }
 
-export async function getLeader(
-  id: string | undefined
-): Promise<Leader | undefined> {
-  if (!id) return undefined;
-
+export async function getLeader(id: string | undefined): Promise<Leader> {
   const groupLeaders = await getLeaders();
   return groupLeaders.find((leader: Leader) => leader.id.toString() === id);
 }

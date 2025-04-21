@@ -48,17 +48,17 @@ export const LeaderSchema = z.object({
     .max(100, { message: "Description must not be over 100 characters" }),
 });
 
-export default function EditLeader({ leader }: { leader: Leader }) {
+export default function EditLeader({ leader }: { leader?: Leader }) {
   const form = useForm<z.infer<typeof LeaderSchema>>({
     resolver: zodResolver(LeaderSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      day: "",
-      time: "",
-      isOnline: false,
-      location: "",
-      description: "",
+      firstName: leader?.name.split(" ")[0] || "",
+      lastName: leader?.name.split(" ")[1] || "",
+      day: leader?.day || "",
+      time: leader?.time || "",
+      isOnline: leader?.isOnline || false,
+      location: leader?.location || "",
+      description: leader?.description || "",
     },
   });
 
@@ -85,7 +85,6 @@ export default function EditLeader({ leader }: { leader: Leader }) {
         <CldUploadWidget
           uploadPreset="ml_default"
           options={{ sources: ["local"] }}
-         
         >
           {({ open }) => {
             return (

@@ -80,7 +80,7 @@ export const columns: ColumnDef<Leader>[] = [
     enableHiding: false,
     cell: ({ row }) => {
       const leader = row.original;
-
+      const router = useRouter();
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -92,7 +92,7 @@ export const columns: ColumnDef<Leader>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(leader.id)}
+              onClick={() => router.push(`/admin/edit/${leader.id}`)}
             >
               Edit Leader
             </DropdownMenuItem>
