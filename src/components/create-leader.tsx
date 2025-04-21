@@ -101,25 +101,28 @@ export default function CreateLeader() {
           {({ open }) => (
             <>
               {img ? (
-                <div className="grid w-full items-center gap-1.5">
-                  <Label htmlFor="picture">Leader Image</Label>
+                <button
+                  onClick={() => open()}
+                  className="flex justify-center w-full"
+                >
                   <Image
                     src={img}
                     width={500}
                     height={500}
                     alt="leader-pic"
-                    className="size-20"
+                    className="size-60 rounded-full object-top object-cover"
                   />
-                </div>
+                </button>
               ) : (
-                <div className="flex justify-center w-full">
-                  <Image
-                    src="https://res.cloudinary.com/don7shges/image/upload/v1744995828/Untitled_design_ujueue.png"
-                    width={500}
-                    height={500}
-                    alt="leader-pic"
-                    className="size-60 rounded-full"
-                  />
+                <div className="grid w-full items-center gap-1.5">
+                  <Label htmlFor="picture">Leader Image</Label>
+                  <Button
+                    onClick={() => open()}
+                    variant="outline"
+                    className="p-16"
+                  >
+                    Upload an image
+                  </Button>
                 </div>
               )}
             </>

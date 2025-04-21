@@ -102,6 +102,6 @@ export async function filterLeaders({
 }
 
 export async function getLeader(id: string | undefined): Promise<Leader> {
-  const groupLeaders = await getLeaders();
+  const groupLeaders = await getAllLeaders();
   return groupLeaders.find((leader: Leader) => leader.id.toString() === id);
 }

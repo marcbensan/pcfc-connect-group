@@ -97,9 +97,15 @@ export const columns: ColumnDef<Leader>[] = [
               Edit Leader
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-red-600">
-              Disable
-            </DropdownMenuItem>
+            {leader.is_available ? (
+              <DropdownMenuItem className="text-red-600">
+                Disable
+              </DropdownMenuItem>
+            ) : (
+              <DropdownMenuItem className="text-green-800">
+                Enable
+              </DropdownMenuItem>
+            )}
           </DropdownMenuContent>
         </DropdownMenu>
       );

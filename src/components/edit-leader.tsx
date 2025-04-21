@@ -14,7 +14,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Leader } from "@/lib/models/leadersModel";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CldUploadWidget } from "next-cloudinary";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Label } from "./ui/label";
@@ -49,6 +51,7 @@ export const LeaderSchema = z.object({
 });
 
 export default function EditLeader({ leader }: { leader?: Leader }) {
+  const [img, setImg] = useState<string>(leader?.img_url || "");
   const form = useForm<z.infer<typeof LeaderSchema>>({
     resolver: zodResolver(LeaderSchema),
     defaultValues: {
@@ -79,28 +82,50 @@ export default function EditLeader({ leader }: { leader?: Leader }) {
         className="space-y-8 w-full md:w-[40rem] rounded-lg bg-pcfcwhite text-pcfcprimary font-caption p-6 mt-4"
       >
         <div className="flex flex-col space-y-2">
-          <h1 className="text-xl font-extrabold">Add a leader</h1>
+          <h1 className="text-xl font-extrabold">Edit - {leader?.name}</h1>
         </div>
         <hr />
         <CldUploadWidget
           uploadPreset="ml_default"
           options={{ sources: ["local"] }}
-        >
-          {({ open }) => {
-            return (
-              <div className="grid w-full  items-center gap-1.5">
-                <Label htmlFor="picture">Leader Image</Label>
-                <Button
-                  id="picture"
-                  variant="outline"
-                  className="bg-pcfcprimary py-16 w-full"
-                  onClick={() => open()}
-                >
-                  Upload an image
-                </Button>
-              </div>
-            );
+          onSuccess={(result) => {
+            if (
+              typeof result.info === "object" &&
+              "secure_url" in result.info
+            ) {
+              setImg(result.info.secure_url);
+            }
           }}
+        >
+          {({ open }) => (
+            <>
+              {img ? (
+                <button
+                  onClick={() => open()}
+                  className="flex justify-center w-full"
+                >
+                  <Image
+                    src={img}
+                    width={500}
+                    height={500}
+                    alt="leader-pic"
+                    className="size-60 rounded-full object-top object-cover"
+                  />
+                </button>
+              ) : (
+                <div className="grid w-full items-center gap-1.5">
+                  <Label htmlFor="picture">Leader Image</Label>
+                  <Button
+                    onClick={() => open()}
+                    variant="outline"
+                    className="p-16"
+                  >
+                    Upload an image
+                  </Button>
+                </div>
+              )}
+            </>
+          )}
         </CldUploadWidget>
 
         <FormField
