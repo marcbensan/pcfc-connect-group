@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Anton, DM_Sans, Mona_Sans } from "next/font/google";
 
 import Footer from "@/components/footer";
+import connectDB from "@/lib/db";
 import "./globals.css";
 
 const anton = Anton({
@@ -29,11 +30,12 @@ export const metadata: Metadata = {
     "Sign up and belong to a small group where you can grow in faith.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await connectDB();
   return (
     <html lang="en">
       <head>

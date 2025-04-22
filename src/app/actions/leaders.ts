@@ -1,10 +1,8 @@
 "use server";
 
-import connectDB from "@/lib/db";
 import leadersModel, { Leader } from "@/lib/models/leadersModel";
 
 export async function getAllLeaders() {
-  await connectDB();
   try {
     const leaders = await leadersModel.find().exec();
     const parsed = JSON.parse(JSON.stringify(leaders));
@@ -16,7 +14,6 @@ export async function getAllLeaders() {
 }
 
 export async function getLeaders() {
-  await connectDB();
   try {
     const leaders = await leadersModel.find({ is_available: true }).exec();
     const parsed = JSON.parse(JSON.stringify(leaders));
@@ -104,4 +101,32 @@ export async function filterLeaders({
 export async function getLeader(id: string | undefined): Promise<Leader> {
   const groupLeaders = await getAllLeaders();
   return groupLeaders.find((leader: Leader) => leader.id.toString() === id);
+}
+
+export async function createLeader({ leader }: { leader: Leader }) {
+  try {
+    let leaderIds: number[] = [];
+    const leaders = await getAllLeaders();
+
+    leaders.forEach((leader: Leader) => {
+      leaderIds.push(Number(leader.id));
+    });
+
+    const generatedId = Math.max(...leaderIds) + 1;
+    const newLeader = await leadersModel.create({
+      id: generatedId.toString(),
+      name: leader.name.toString(),
+      day: leader.day.toString(),
+      time: leader.time.toString(),
+      isOnline: leader.isOnline,
+      location: leader.location.toString(),
+      description: leader.description.toString(),
+      img_url: leader.img_url.toString(),
+      is_available: true,
+    });
+
+    return { message: "Leader created", leader: newLeader };
+  } catch (err) {
+    console.error("Error fetching leaders:", err);
+  }
 }
