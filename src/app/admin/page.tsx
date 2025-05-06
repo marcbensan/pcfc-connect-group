@@ -13,5 +13,10 @@ export default async function PrivatePage() {
     redirect("/login");
   }
 
-  return <Admin leaders={leaders} />;
+  return (
+    <div className="space-y-8 p-8">
+      <h1 className="text-4xl font-subheading text-pcfcwhite">Admin Page</h1>
+      <Admin leaders={leaders} />;
+    </div>
+  );
 }

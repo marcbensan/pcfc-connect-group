@@ -156,12 +156,8 @@ export function LeadersTable({ data }: { data: Leader[] }) {
     },
   });
 
-  async function handleAvailabilityClick({ leaderId }: { leaderId: string }) {
-    await updateAvailability(leaderId);
-  }
-
   return (
-    <div className="w-full">
+    <div className="w-full font-caption text-pcfcprimarydark border-pcfcprimarydark">
       <div className="flex items-center py-4 space-x-4">
         <Input
           placeholder="Search by name..."
@@ -169,11 +165,16 @@ export function LeadersTable({ data }: { data: Leader[] }) {
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
           }
-          className="w-full"
+          className="w-full text-white border-pcfcprimarydark"
         />
-        <Button onClick={() => router.push("/admin/create")}>Add Leader</Button>
+        <Button
+          className="bg-pcfcprimarydark hover:bg-pcfcprimarydark"
+          onClick={() => router.push("/admin/create")}
+        >
+          Add Leader
+        </Button>
       </div>
-      <div className="rounded-md border bg-white">
+      <div className="rounded-md border bg-pcfcwhite">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -230,16 +231,18 @@ export function LeadersTable({ data }: { data: Leader[] }) {
       <div className="flex items-center justify-start space-x-2 py-4">
         <div className="space-x-2">
           <Button
-            variant="outline"
             size="sm"
+            variant="outline"
+            className="text-white"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
             Previous
           </Button>
           <Button
-            variant="outline"
             size="sm"
+            variant="outline"
+            className="text-white"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
