@@ -103,7 +103,7 @@ export async function getLeader(id: string | undefined): Promise<Leader> {
   return groupLeaders.find((leader: Leader) => leader.id.toString() === id);
 }
 
-export async function createLeader({ leader }: { leader: Leader }) {
+export async function createLeader({ leader }: { leader: any }) {
   try {
     let leaderIds: number[] = [];
     const leaders = await getAllLeaders();
@@ -128,5 +128,22 @@ export async function createLeader({ leader }: { leader: Leader }) {
     return { message: "Leader created", leader: newLeader };
   } catch (err) {
     console.error("Error fetching leaders:", err);
+  }
+}
+
+export async function updateAvailability(leaderId: string) {
+  try {
+    const leader = await getLeader(leaderId);
+    console.log("Leader found");
+    const updatedLeader = await leadersModel.updateOne(
+      { id: leader.id }, // Query to find the leader
+      { $set: { is_available: !leader.is_available } } // Toggle the value
+    );
+    console.log("Update successful");
+
+    return { message: "Leader availability updated", updatedLeader };
+  } catch (err) {
+    console.log("Update failed");
+    return { message: err };
   }
 }

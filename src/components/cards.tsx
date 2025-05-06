@@ -105,7 +105,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] | undefined }) {
                       className="px-7 py-3 text-sm rounded-full font-bold bg-blue-800 text-white"
                     >
                       Join
-                    </motion.a>
+                  </motion.a>
                   </div>
                   <div className="pt-4 relative px-4">
                     <motion.div

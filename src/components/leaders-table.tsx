@@ -15,6 +15,7 @@ import {
 import { ArrowUpDown, CheckIcon, MoreHorizontal, XIcon } from "lucide-react";
 import * as React from "react";
 
+import { updateAvailability } from "@/app/actions/leaders";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -98,11 +99,17 @@ export const columns: ColumnDef<Leader>[] = [
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             {leader.is_available ? (
-              <DropdownMenuItem className="text-red-600">
+              <DropdownMenuItem
+                className="text-red-600"
+                onClick={async () => await updateAvailability(leader.id)}
+              >
                 Disable
               </DropdownMenuItem>
             ) : (
-              <DropdownMenuItem className="text-green-800">
+              <DropdownMenuItem
+                className="text-green-800"
+                onClick={async () => await updateAvailability(leader.id)}
+              >
                 Enable
               </DropdownMenuItem>
             )}
@@ -142,6 +149,10 @@ export function LeadersTable({ data }: { data: Leader[] }) {
       rowSelection,
     },
   });
+
+  async function handleAvailabilityClick({ leaderId }: { leaderId: string }) {
+    await updateAvailability(leaderId);
+  }
 
   return (
     <div className="w-full">

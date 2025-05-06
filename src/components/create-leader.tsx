@@ -1,4 +1,5 @@
 "use client";
+import { createLeader } from "@/app/actions/leaders";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -20,7 +21,6 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Label } from "./ui/label";
 import { Switch } from "./ui/switch";
-import { Leader } from "@/lib/models/leadersModel";
 
 export const LeaderSchema = z.object({
   firstName: z
@@ -70,16 +70,18 @@ export default function CreateLeader() {
 
   function onSubmit(data: z.infer<typeof LeaderSchema>) {
     try {
-      const leaderData: Leader = {
+      console.log("submitting");
+      const leaderData = {
         name: `${data.firstName} ${data.lastName}`,
         day: data.day,
         time: data.time,
         isOnline: data.isOnline,
         location: data.location,
         description: data.description,
-        img_url: img
+        img_url: img,
       };
-      sendEmail(values, leader?.name || "-");
+      createLeader({ leader: leaderData });
+      console.log("success");
       router.push("/success");
     } catch (error) {
       console.error("Form submission error", error);
