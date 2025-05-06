@@ -82,6 +82,12 @@ export const columns: ColumnDef<Leader>[] = [
     cell: ({ row }) => {
       const leader = row.original;
       const router = useRouter();
+
+      async function handleAvailabilityClick(leaderId: number) {
+        await updateAvailability(leaderId);
+        router.refresh();
+      }
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -101,14 +107,14 @@ export const columns: ColumnDef<Leader>[] = [
             {leader.is_available ? (
               <DropdownMenuItem
                 className="text-red-600"
-                onClick={async () => await updateAvailability(leader.id)}
+                onClick={() => handleAvailabilityClick(Number(leader.id))}
               >
                 Disable
               </DropdownMenuItem>
             ) : (
               <DropdownMenuItem
                 className="text-green-800"
-                onClick={async () => await updateAvailability(leader.id)}
+                onClick={() => handleAvailabilityClick(Number(leader.id))}
               >
                 Enable
               </DropdownMenuItem>

@@ -131,10 +131,10 @@ export async function createLeader({ leader }: { leader: any }) {
   }
 }
 
-export async function updateAvailability(leaderId: string) {
+export async function updateAvailability(leaderId: number) {
   try {
-    const leader = await getLeader(leaderId);
-    console.log("Leader found");
+    const leader = await getLeader(leaderId.toString());
+    console.log("Leader found", leader);
     const updatedLeader = await leadersModel.updateOne(
       { id: leader.id }, // Query to find the leader
       { $set: { is_available: !leader.is_available } } // Toggle the value
