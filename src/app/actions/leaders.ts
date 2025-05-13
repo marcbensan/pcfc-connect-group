@@ -1,68 +1,31 @@
 "use server";
 
-import { leaders } from "@/lib/data/leaders";
-import { Leader } from "@/lib/types/leader";
+import leadersModel, { Leader } from "@/lib/models/leadersModel";
+import { NewLeader } from "@/lib/types/leader";
 
-export async function getSupabaseLeaders(): Promise<Leader[]> {
-  const availableLeaders = leaders.filter(
-    (leader) => leader.is_available === true
-  );
-  return availableLeaders;
-  // const now = Date.now();
-
-  // // Case 1: Cache is valid and fresh - return immediately
-  // if (leadersCache.data && now - leadersCache.timestamp < CACHE_DURATION) {
-  //   console.log("Serving leaders from server memory cache");
-  //   return leadersCache.data;
-  // }
-
-  // // Case 2: Cache is expired or empty - fetch new data
-  // if (!isRevalidating) {
-  //   isRevalidating = true;
-
-  //   try {
-  //     console.log("Fetching leaders from Supabase");
-  //     const supabase = await createClient();
-  //     const { data: leaders, error } = await supabase
-  //       .from("leaders")
-  //       .select()
-  //       .eq("is_available", true);
-
-  //     if (error) {
-  //       console.error("Error fetching leaders:", error);
-  //       // Return existing cache if available, even if expired
-  //       isRevalidating = false;
-  //       return leadersCache.data || [];
-  //     }
-
-  //     // Sort the leaders by name
-  //     const sortedLeaders =
-  //       leaders?.sort((a, b) => a.name.localeCompare(b.name)) || [];
-
-  //     // Update the cache with new data and timestamp
-  //     leadersCache = {
-  //       data: sortedLeaders,
-  //       timestamp: now,
-  //     };
-
-  //     isRevalidating = false;
-  //     return sortedLeaders;
-  //   } catch (e) {
-  //     isRevalidating = false;
-  //     console.error("Error during leaders fetch:", e);
-  //     // Fallback to existing cache or empty array
-  //     return leadersCache.data || [];
-  //   }
-  // } else {
-  //   // Return existing cache while revalidation is in progress
-  //   return leadersCache.data || [];
-  // }
+export async function getAllLeaders() {
+  try {
+    const leaders = await leadersModel.find().exec();
+    const parsed = JSON.parse(JSON.stringify(leaders));
+    return parsed;
+  } catch (err) {
+    console.error("Error fetching leaders:", err);
+    return [];
+  }
 }
 
-/**
- * Gets filtered leaders based on search parameters
- */
-export async function getLeaders({
+export async function getLeaders() {
+  try {
+    const leaders = await leadersModel.find({ is_available: true }).exec();
+    const parsed = JSON.parse(JSON.stringify(leaders));
+    return parsed;
+  } catch (err) {
+    console.error("Error fetching leaders:", err);
+    return [];
+  }
+}
+
+export async function filterLeaders({
   online,
   locations,
   days,
@@ -71,7 +34,7 @@ export async function getLeaders({
   locations?: string[];
   days?: string[];
 } = {}): Promise<Leader[]> {
-  const groupLeaders = await getSupabaseLeaders();
+  const groupLeaders = await getLeaders();
 
   // If no filters are applied, return all leaders
   if (online === undefined && !locations?.length && !days?.length) {
@@ -79,7 +42,7 @@ export async function getLeaders({
   }
 
   // Filter leaders based on the provided conditions
-  return groupLeaders.filter((leader) => {
+  return groupLeaders.filter((leader: Leader) => {
     // Check online condition
     if (online !== undefined && leader.isOnline !== online) {
       return false;
@@ -136,11 +99,52 @@ export async function getLeaders({
   });
 }
 
-export async function getLeader(
-  id: string | undefined
-): Promise<Leader | undefined> {
-  if (!id) return undefined;
+export async function getLeader(id: string | undefined): Promise<Leader> {
+  const groupLeaders = await getAllLeaders();
+  return groupLeaders.find((leader: Leader) => leader.id.toString() === id);
+}
 
-  const groupLeaders = await getSupabaseLeaders();
-  return groupLeaders.find((leader) => leader.id.toString() === id);
+export async function createLeader({ leader }: { leader: NewLeader }) {
+  try {
+    const leaderIds: number[] = [];
+    const leaders = await getAllLeaders();
+
+    leaders.forEach((leader: Leader) => {
+      leaderIds.push(Number(leader.id));
+    });
+
+    const generatedId = Math.max(...leaderIds) + 1;
+    await leadersModel.create({
+      id: generatedId,
+      name: leader.name.toString(),
+      day: leader.day.toString(),
+      time: leader.time.toString(),
+      isOnline: leader.isOnline,
+      location: leader.location.toString(),
+      description: leader.description.toString(),
+      img_url: leader.img_url.toString(),
+      is_available: true,
+    });
+
+    return { message: "Leader created" };
+  } catch (err) {
+    console.error("Error fetching leaders:", err);
+  }
+}
+
+export async function updateAvailability(leaderId: number) {
+  try {
+    const leader = await getLeader(leaderId.toString());
+    console.log("Leader found", leader);
+    const updatedLeader = await leadersModel.updateOne(
+      { id: leader.id }, // Query to find the leader
+      { $set: { is_available: !leader.is_available } } // Toggle the value
+    );
+    console.log("Update successful");
+
+    return { message: "Leader availability updated", updatedLeader };
+  } catch (err) {
+    console.log("Update failed");
+    return { message: err };
+  }
 }
