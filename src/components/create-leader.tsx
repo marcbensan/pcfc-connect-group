@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { NewLeader } from "@/lib/types/leader";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CldUploadWidget } from "next-cloudinary";
 import Image from "next/image";
@@ -53,8 +54,7 @@ export const LeaderSchema = z.object({
 
 export default function CreateLeader() {
   const [img, setImg] = useState<string>("");
-  const [submitAttempted, setSubmitAttempted] = useState(false);
-  
+
   const form = useForm<z.infer<typeof LeaderSchema>>({
     resolver: zodResolver(LeaderSchema),
     defaultValues: {
@@ -65,7 +65,7 @@ export default function CreateLeader() {
       isOnline: false,
       location: "",
       description: "",
-      imgUrl: "", // Add default value
+      imgUrl: "",
     },
   });
 
@@ -73,9 +73,7 @@ export default function CreateLeader() {
 
   function onSubmit(data: z.infer<typeof LeaderSchema>) {
     try {
-      console.log("submitting data:", data); // Debug log
-      
-      const leaderData = {
+      const leaderData: NewLeader = {
         name: `${data.firstName} ${data.lastName}`,
         day: data.day,
         time: data.time,
@@ -84,8 +82,7 @@ export default function CreateLeader() {
         description: data.description,
         img_url: img,
       };
-      
-      console.log("leaderData to submit:", leaderData); // Debug log
+
       createLeader({ leader: leaderData });
       console.log("success");
       router.push("/success");
@@ -93,17 +90,6 @@ export default function CreateLeader() {
       console.error("Form submission error", error);
     }
   }
-
-  // Add this to watch form state and errors
-  const watchFields = form.watch();
-  const formErrors = form.formState.errors;
-  console.log("Form values:", watchFields);
-  console.log("Form errors:", formErrors);
-
-  const handleSubmit = () => {
-    setSubmitAttempted(true);
-    form.handleSubmit(onSubmit)();
-  };
 
   return (
     <Form {...form}>
@@ -274,13 +260,6 @@ export default function CreateLeader() {
             </FormItem>
           )}
         />
-
-        {submitAttempted && Object.keys(formErrors).length > 0 && (
-          <div className="text-red-500">
-            Please fix the validation errors before submitting.
-          </div>
-        )}
-
         <hr />
         <div className="flex flex-row justify-end space-x-2">
           <Button

@@ -37,95 +37,6 @@ import {
 import { Leader } from "@/lib/models/leadersModel";
 import { useRouter } from "next/navigation";
 
-export const columns: ColumnDef<Leader>[] = [
-  {
-    accessorKey: "name",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        Name
-        <ArrowUpDown />
-      </Button>
-    ),
-    cell: ({ row }) => <div>{row.getValue("name")}</div>,
-  },
-  {
-    accessorKey: "is_available",
-    header: "Available",
-    cell: ({ row }) => (
-      <div
-        className={`${
-          row.getValue("is_available") ? "text-green-800" : "text-red-600"
-        }`}
-      >
-        {row.getValue("is_available") ? <CheckIcon /> : <XIcon />}
-      </div>
-    ),
-  },
-  {
-    accessorKey: "day",
-    header: "Day",
-    cell: ({ row }) => <div>{row.getValue("day")}</div>,
-    meta: { className: "hidden lg:table-cell" }, // Add meta for responsive class
-  },
-  {
-    accessorKey: "location",
-    header: "Location",
-    cell: ({ row }) => <div>{row.getValue("location")}</div>,
-    meta: { className: "hidden lg:table-cell" }, // Add meta for responsive class
-  },
-  {
-    id: "actions",
-    enableHiding: false,
-    cell: ({ row }) => {
-      const leader = row.original;
-      const router = useRouter();
-
-      async function handleAvailabilityClick(leaderId: number) {
-        await updateAvailability(leaderId);
-        router.refresh();
-      }
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => router.push(`/admin/edit/${leader.id}`)}
-            >
-              Edit Leader
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            {leader.is_available ? (
-              <DropdownMenuItem
-                className="text-red-600"
-                onClick={() => handleAvailabilityClick(Number(leader.id))}
-              >
-                Disable
-              </DropdownMenuItem>
-            ) : (
-              <DropdownMenuItem
-                className="text-green-800"
-                onClick={() => handleAvailabilityClick(Number(leader.id))}
-              >
-                Enable
-              </DropdownMenuItem>
-            )}
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
-  },
-];
-
 export function LeadersTable({ data }: { data: Leader[] }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -136,6 +47,94 @@ export function LeadersTable({ data }: { data: Leader[] }) {
   const [rowSelection, setRowSelection] = React.useState({});
 
   const router = useRouter();
+
+  const columns: ColumnDef<Leader>[] = [
+    {
+      accessorKey: "name",
+      header: ({ column }) => (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Name
+          <ArrowUpDown />
+        </Button>
+      ),
+      cell: ({ row }) => <div>{row.getValue("name")}</div>,
+    },
+    {
+      accessorKey: "is_available",
+      header: "Available",
+      cell: ({ row }) => (
+        <div
+          className={`${
+            row.getValue("is_available") ? "text-green-800" : "text-red-600"
+          }`}
+        >
+          {row.getValue("is_available") ? <CheckIcon /> : <XIcon />}
+        </div>
+      ),
+    },
+    {
+      accessorKey: "day",
+      header: "Day",
+      cell: ({ row }) => <div>{row.getValue("day")}</div>,
+      meta: { className: "hidden lg:table-cell" }, // Add meta for responsive class
+    },
+    {
+      accessorKey: "location",
+      header: "Location",
+      cell: ({ row }) => <div>{row.getValue("location")}</div>,
+      meta: { className: "hidden lg:table-cell" }, // Add meta for responsive class
+    },
+    {
+      id: "actions",
+      enableHiding: false,
+      cell: ({ row }) => {
+        const leader = row.original;
+
+        async function handleAvailabilityClick(leaderId: number) {
+          await updateAvailability(leaderId);
+          router.refresh();
+        }
+
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem
+                onClick={() => router.push(`/admin/edit/${leader.id}`)}
+              >
+                Edit Leader
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              {leader.is_available ? (
+                <DropdownMenuItem
+                  className="text-red-600"
+                  onClick={() => handleAvailabilityClick(Number(leader.id))}
+                >
+                  Disable
+                </DropdownMenuItem>
+              ) : (
+                <DropdownMenuItem
+                  className="text-green-800"
+                  onClick={() => handleAvailabilityClick(Number(leader.id))}
+                >
+                  Enable
+                </DropdownMenuItem>
+              )}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+      },
+    },
+  ];
 
   const table = useReactTable({
     data,

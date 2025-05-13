@@ -1,6 +1,7 @@
 "use server";
 
 import leadersModel, { Leader } from "@/lib/models/leadersModel";
+import { NewLeader } from "@/lib/types/leader";
 
 export async function getAllLeaders() {
   try {
@@ -103,9 +104,9 @@ export async function getLeader(id: string | undefined): Promise<Leader> {
   return groupLeaders.find((leader: Leader) => leader.id.toString() === id);
 }
 
-export async function createLeader({ leader }: { leader: any }) {
+export async function createLeader({ leader }: { leader: NewLeader }) {
   try {
-    let leaderIds: number[] = [];
+    const leaderIds: number[] = [];
     const leaders = await getAllLeaders();
 
     leaders.forEach((leader: Leader) => {
