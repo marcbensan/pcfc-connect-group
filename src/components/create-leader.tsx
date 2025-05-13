@@ -48,11 +48,13 @@ export const LeaderSchema = z.object({
     .string()
     .min(1, { message: "Description is required" })
     .max(100, { message: "Description must not be over 100 characters" }),
-  imgUrl: z.string(),
+  imgUrl: z.string().optional(), // Make imgUrl optional
 });
 
 export default function CreateLeader() {
   const [img, setImg] = useState<string>("");
+  const [submitAttempted, setSubmitAttempted] = useState(false);
+  
   const form = useForm<z.infer<typeof LeaderSchema>>({
     resolver: zodResolver(LeaderSchema),
     defaultValues: {
@@ -63,6 +65,7 @@ export default function CreateLeader() {
       isOnline: false,
       location: "",
       description: "",
+      imgUrl: "", // Add default value
     },
   });
 
@@ -70,7 +73,8 @@ export default function CreateLeader() {
 
   function onSubmit(data: z.infer<typeof LeaderSchema>) {
     try {
-      console.log("submitting");
+      console.log("submitting data:", data); // Debug log
+      
       const leaderData = {
         name: `${data.firstName} ${data.lastName}`,
         day: data.day,
@@ -80,6 +84,8 @@ export default function CreateLeader() {
         description: data.description,
         img_url: img,
       };
+      
+      console.log("leaderData to submit:", leaderData); // Debug log
       createLeader({ leader: leaderData });
       console.log("success");
       router.push("/success");
@@ -87,6 +93,17 @@ export default function CreateLeader() {
       console.error("Form submission error", error);
     }
   }
+
+  // Add this to watch form state and errors
+  const watchFields = form.watch();
+  const formErrors = form.formState.errors;
+  console.log("Form values:", watchFields);
+  console.log("Form errors:", formErrors);
+
+  const handleSubmit = () => {
+    setSubmitAttempted(true);
+    form.handleSubmit(onSubmit)();
+  };
 
   return (
     <Form {...form}>
@@ -107,6 +124,7 @@ export default function CreateLeader() {
               "secure_url" in result.info
             ) {
               setImg(result.info.secure_url);
+              form.setValue("imgUrl", result.info.secure_url);
             }
           }}
         >
@@ -116,6 +134,7 @@ export default function CreateLeader() {
                 <button
                   onClick={() => open()}
                   className="flex justify-center w-full"
+                  type="button" // Add type="button" to prevent form submission
                 >
                   <Image
                     src={img}
@@ -132,6 +151,7 @@ export default function CreateLeader() {
                     onClick={() => open()}
                     variant="outline"
                     className="p-16"
+                    type="button" // Add type="button" to prevent form submission
                   >
                     Upload an image
                   </Button>
@@ -254,6 +274,12 @@ export default function CreateLeader() {
             </FormItem>
           )}
         />
+
+        {submitAttempted && Object.keys(formErrors).length > 0 && (
+          <div className="text-red-500">
+            Please fix the validation errors before submitting.
+          </div>
+        )}
 
         <hr />
         <div className="flex flex-row justify-end space-x-2">

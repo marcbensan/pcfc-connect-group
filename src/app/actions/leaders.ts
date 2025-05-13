@@ -113,8 +113,8 @@ export async function createLeader({ leader }: { leader: any }) {
     });
 
     const generatedId = Math.max(...leaderIds) + 1;
-    const newLeader = await leadersModel.create({
-      id: generatedId.toString(),
+    await leadersModel.create({
+      id: generatedId,
       name: leader.name.toString(),
       day: leader.day.toString(),
       time: leader.time.toString(),
@@ -125,7 +125,7 @@ export async function createLeader({ leader }: { leader: any }) {
       is_available: true,
     });
 
-    return { message: "Leader created", leader: newLeader };
+    return { message: "Leader created" };
   } catch (err) {
     console.error("Error fetching leaders:", err);
   }
