@@ -1,10 +1,12 @@
 "use server";
 
+import connectDB from "@/lib/db";
 import leadersModel, { MongooseLeader } from "@/lib/models/leadersModel";
 import { Leader, NewLeader } from "@/lib/types/leader";
 
 export async function getAllLeaders() {
   try {
+    await connectDB();
     const leaders = await leadersModel.find().exec();
     const parsed = JSON.parse(JSON.stringify(leaders));
     return parsed;
@@ -16,6 +18,7 @@ export async function getAllLeaders() {
 
 export async function getLeaders() {
   try {
+    await connectDB();
     const leaders = await leadersModel.find({ is_available: true }).exec();
     const parsed = JSON.parse(JSON.stringify(leaders));
     return parsed;
@@ -34,6 +37,7 @@ export async function filterLeaders({
   locations?: string[];
   days?: string[];
 } = {}): Promise<MongooseLeader[]> {
+  await connectDB();
   const groupLeaders = await getLeaders();
 
   // If no filters are applied, return all leaders
@@ -102,6 +106,7 @@ export async function filterLeaders({
 export async function getLeader(
   id: string | undefined
 ): Promise<MongooseLeader> {
+  await connectDB();
   const groupLeaders = await getAllLeaders();
   return groupLeaders.find(
     (leader: MongooseLeader) => leader.id.toString() === id
@@ -110,6 +115,7 @@ export async function getLeader(
 
 export async function createLeader({ leader }: { leader: NewLeader }) {
   try {
+    await connectDB();
     const leaderIds: number[] = [];
     const leaders = await getAllLeaders();
 
@@ -138,6 +144,7 @@ export async function createLeader({ leader }: { leader: NewLeader }) {
 
 export async function updateLeader({ leader }: { leader: Leader }) {
   try {
+    await connectDB();
     await leadersModel.updateOne(
       { id: leader.id }, // Query to find the leader
       {
@@ -162,13 +169,12 @@ export async function updateLeader({ leader }: { leader: Leader }) {
 
 export async function updateAvailability(leaderId: number) {
   try {
+    await connectDB();
     const leader = await getLeader(leaderId.toString());
-    console.log("Leader found", leader);
     const updatedLeader = await leadersModel.updateOne(
-      { id: leader.id }, // Query to find the leader
-      { $set: { is_available: !leader.is_available } } // Toggle the value
+      { id: leader.id },
+      { $set: { is_available: !leader.is_available } }
     );
-    console.log("Update successful");
 
     return { message: "Leader availability updated", updatedLeader };
   } catch (err) {
