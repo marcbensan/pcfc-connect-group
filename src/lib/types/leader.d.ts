@@ -1,6 +1,6 @@
 export interface Leader {
-  id: string;
-  createdAt: string;
+  id?: string;
+  createdAt?: string;
   name: string;
   day: string;
   time: string;
@@ -8,7 +8,7 @@ export interface Leader {
   location: string;
   description: string;
   img_url: string;
-  is_available: boolean;
+  is_available?: boolean;
 }
 
 export interface NewLeader {
@@ -19,4 +19,5 @@ export interface NewLeader {
   location: string;
   description: string;
   img_url: string;
+  is_available?: boolean;
 }

@@ -1,4 +1,5 @@
 "use client";
+import { updateLeader } from "@/app/actions/leaders";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -11,7 +12,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Leader } from "@/lib/models/leadersModel";
+import { MongooseLeader } from "@/lib/models/leadersModel";
+import { Leader } from "@/lib/types/leader";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CldUploadWidget } from "next-cloudinary";
 import Image from "next/image";
@@ -50,7 +52,7 @@ export const LeaderSchema = z.object({
     .max(100, { message: "Description must not be over 100 characters" }),
 });
 
-export default function EditLeader({ leader }: { leader?: Leader }) {
+export default function EditLeader({ leader }: { leader?: MongooseLeader }) {
   const [img, setImg] = useState<string>(leader?.img_url || "");
   const form = useForm<z.infer<typeof LeaderSchema>>({
     resolver: zodResolver(LeaderSchema),
@@ -69,6 +71,30 @@ export default function EditLeader({ leader }: { leader?: Leader }) {
 
   function onSubmit(values: z.infer<typeof LeaderSchema>) {
     try {
+      const {
+        firstName,
+        lastName,
+        day,
+        time,
+        isOnline,
+        location,
+        description,
+      } = values;
+
+      const updatedLeader: Leader = {
+        id: leader?.id,
+        name: `${firstName} ${lastName}`,
+        day: day,
+        time: time,
+        isOnline: isOnline,
+        location: location,
+        description: description,
+        img_url: img,
+      };
+
+      updateLeader({ leader: updatedLeader });
+      router.back();
+
       console.log(values);
     } catch (error) {
       console.error("Form submission error", error);
@@ -256,7 +282,7 @@ export default function EditLeader({ leader }: { leader?: Leader }) {
             className="bg-pcfcprimary rounded-full hover:bg-blue-950"
             type="submit"
           >
-            Create
+            Update
           </Button>
         </div>
       </form>

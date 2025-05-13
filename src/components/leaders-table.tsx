@@ -34,10 +34,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Leader } from "@/lib/models/leadersModel";
+import { MongooseLeader } from "@/lib/models/leadersModel";
 import { useRouter } from "next/navigation";
 
-export function LeadersTable({ data }: { data: Leader[] }) {
+export function LeadersTable({ data }: { data: MongooseLeader[] }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -48,7 +48,7 @@ export function LeadersTable({ data }: { data: Leader[] }) {
 
   const router = useRouter();
 
-  const columns: ColumnDef<Leader>[] = [
+  const columns: ColumnDef<MongooseLeader>[] = [
     {
       accessorKey: "name",
       header: ({ column }) => (
