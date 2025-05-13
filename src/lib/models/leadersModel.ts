@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export interface Leader extends mongoose.Document {
+export interface MongooseLeader extends mongoose.Document {
   id: string;
   createdAt: string;
   name: string;
@@ -13,7 +13,7 @@ export interface Leader extends mongoose.Document {
   is_available: boolean;
 }
 
-const LeaderSchema = new mongoose.Schema<Leader>({
+const LeaderSchema = new mongoose.Schema<MongooseLeader>({
   name: {
     /* The name of the leader */
     type: String,
@@ -61,4 +61,4 @@ const LeaderSchema = new mongoose.Schema<Leader>({
 });
 
 export default mongoose.models.Leader ||
-  mongoose.model<Leader>("Leader", LeaderSchema);
+  mongoose.model<MongooseLeader>("Leader", LeaderSchema);

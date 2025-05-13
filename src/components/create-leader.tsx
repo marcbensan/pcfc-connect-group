@@ -84,8 +84,7 @@ export default function CreateLeader() {
       };
 
       createLeader({ leader: leaderData });
-      console.log("success");
-      router.push("/success");
+      router.back();
     } catch (error) {
       console.error("Form submission error", error);
     }

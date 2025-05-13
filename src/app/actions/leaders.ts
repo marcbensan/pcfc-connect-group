@@ -1,7 +1,7 @@
 "use server";
 
-import leadersModel, { Leader } from "@/lib/models/leadersModel";
-import { NewLeader } from "@/lib/types/leader";
+import leadersModel, { MongooseLeader } from "@/lib/models/leadersModel";
+import { Leader, NewLeader } from "@/lib/types/leader";
 
 export async function getAllLeaders() {
   try {
@@ -33,7 +33,7 @@ export async function filterLeaders({
   online?: boolean;
   locations?: string[];
   days?: string[];
-} = {}): Promise<Leader[]> {
+} = {}): Promise<MongooseLeader[]> {
   const groupLeaders = await getLeaders();
 
   // If no filters are applied, return all leaders
@@ -42,7 +42,7 @@ export async function filterLeaders({
   }
 
   // Filter leaders based on the provided conditions
-  return groupLeaders.filter((leader: Leader) => {
+  return groupLeaders.filter((leader: MongooseLeader) => {
     // Check online condition
     if (online !== undefined && leader.isOnline !== online) {
       return false;
@@ -99,9 +99,13 @@ export async function filterLeaders({
   });
 }
 
-export async function getLeader(id: string | undefined): Promise<Leader> {
+export async function getLeader(
+  id: string | undefined
+): Promise<MongooseLeader> {
   const groupLeaders = await getAllLeaders();
-  return groupLeaders.find((leader: Leader) => leader.id.toString() === id);
+  return groupLeaders.find(
+    (leader: MongooseLeader) => leader.id.toString() === id
+  );
 }
 
 export async function createLeader({ leader }: { leader: NewLeader }) {
@@ -129,6 +133,30 @@ export async function createLeader({ leader }: { leader: NewLeader }) {
     return { message: "Leader created" };
   } catch (err) {
     console.error("Error fetching leaders:", err);
+  }
+}
+
+export async function updateLeader({ leader }: { leader: Leader }) {
+  try {
+    await leadersModel.updateOne(
+      { id: leader.id }, // Query to find the leader
+      {
+        $set: {
+          name: leader.name,
+          day: leader.day,
+          time: leader.time,
+          isOnline: leader.isOnline,
+          location: leader.location,
+          description: leader.description,
+          img_url: leader.img_url,
+          is_available: true,
+        },
+      }
+    );
+    return { message: "Leader availability updated" };
+  } catch (err) {
+    console.log("Update failed");
+    return { message: err };
   }
 }
 
