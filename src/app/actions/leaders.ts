@@ -182,3 +182,14 @@ export async function updateAvailability(leaderId: number) {
     return { message: err };
   }
 }
+
+export async function deleteLeader(leaderId: number) {
+  try {
+    await connectDB();
+    const deletedLeader = await leadersModel.deleteOne({ id: leaderId });
+    return { message: "Leader deleted", deletedLeader };
+  } catch (err) {
+    console.log("Delete failed");
+    return { message: err };
+  }
+}
