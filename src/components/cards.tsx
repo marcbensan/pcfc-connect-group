@@ -105,7 +105,7 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] | undefined }) {
                       className="px-7 py-3 text-sm rounded-full font-bold bg-blue-800 text-white"
                     >
                       Join
-                  </motion.a>
+                    </motion.a>
                   </div>
                   <div className="pt-4 relative px-4">
                     <motion.div
@@ -150,18 +150,18 @@ export function ExpandableCard({ leaders }: { leaders: Leader[] | undefined }) {
                     />
                   </motion.div>
                   <div
-                    className={`${
+                    className={`max-w-[60%] ${
                       index % 2 === 0 ? "order-last" : "order-first"
                     }`}
                   >
                     <h3
-                      className={`text-lg font-semibold  ${
+                      className={`text-lg font-semibold line-clamp-1 ${
                         index % 2 !== 0 ? "text-right" : "text-left"
                       }`}
                     >
                       {card.name}
                     </h3>
-                    <p className=" text-start text-pcfcprimary/70">
+                    <p className=" text-start line-clamp-1 text-pcfcprimary/70">
                       {card.day} | {card.time}
                     </p>
                   </div>
