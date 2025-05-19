@@ -121,7 +121,6 @@ export async function createLeader({ leader }: { leader: NewLeader }) {
 
     leaders.forEach((leader: Leader) => {
       leaderIds.push(Number(leader.id ?? 0));
-      console.log(leader.id);
     });
 
     const generatedId = Math.max(...leaderIds) + 1;
