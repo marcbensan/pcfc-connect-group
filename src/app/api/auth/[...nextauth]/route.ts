@@ -1,5 +1,3 @@
-// app/api/auth/[...nextauth]/route.ts
-
 import bcrypt from "bcryptjs";
 import type { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth";
@@ -16,6 +14,7 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         if (!credentials) return null;
 
+        // USE PROCESS ENV MAYBE
         const user = {
           id: "1",
           name: "Cheng",

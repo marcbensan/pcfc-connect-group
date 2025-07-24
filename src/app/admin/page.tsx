@@ -2,11 +2,11 @@ import Admin from "@/components/admin";
 import { getServerSession } from "next-auth";
 import { getAllLeaders } from "../actions/leaders";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-import Login from "../login/_components/login";
+import Login from "./_components/login";
 
 export default async function PrivatePage() {
   const session = await getServerSession(authOptions);
-  console.log("the session is", session);
+
   if (!session) {
     return <Login />;
   }
