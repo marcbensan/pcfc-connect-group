@@ -10,7 +10,6 @@ const nextConfig: NextConfig = {
       "upload.wikimedia.org",
       "img.freepik.com",
       "pokewalls.wordpress.com",
-      "eistlpmaeddcbkhclaaj.supabase.co",
       "res.cloudinary.com",
       "res-console.cloudinary.com",
     ],

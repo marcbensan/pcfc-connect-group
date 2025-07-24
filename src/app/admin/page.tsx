@@ -1,17 +1,17 @@
-import { redirect } from "next/navigation";
-
 import Admin from "@/components/admin";
-import { createClient } from "@/utils/supabase/server";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 import { getAllLeaders } from "../actions/leaders";
+import Login from "./_components/login";
 
 export default async function PrivatePage() {
-  const supabase = await createClient();
-  const leaders = await getAllLeaders();
+  const session = await getServerSession(authOptions);
 
-  const { data, error } = await supabase.auth.getUser();
-  if (error || !data?.user) {
-    redirect("/login");
+  if (!session) {
+    return <Login />;
   }
+
+  const leaders = await getAllLeaders();
 
   return (
     <div className="space-y-8 p-8">
