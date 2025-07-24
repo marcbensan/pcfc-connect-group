@@ -26,8 +26,8 @@ export const UserSchema = z.object({
     .max(20, { message: "First Name must not be over 20 characters" }),
   lastName: z
     .string()
-    .min(1, { message: "First Name is required" })
-    .max(20, { message: "First Name must not be over 20 characters" }),
+    .min(1, { message: "Last Name is required" })
+    .max(20, { message: "Last Name must not be over 20 characters" }),
   phone: z
     .string()
     .min(1, { message: "Phone number is required" })

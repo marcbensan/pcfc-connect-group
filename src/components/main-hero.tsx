@@ -16,9 +16,9 @@ export default function MainHero() {
           />
           <h1 className="font-subheading md:text-center text-4xl text-pcfcsecondary">
             FAITH GROWS BEST IN{" "}
-            <span className="relative z-20 inline-block rounded-lg bg-blue-900/50 px-2 py-1 text-pcfcsecondary underline decoration-pcfcwhite decoration-[3px] underline-offset-[4px] backdrop-blur-sm">
+            <span className="relative z-20 inline-block rounded-lg bg-blue-900/50 py-1 text-pcfcsecondary underline decoration-pcfcwhite decoration-[3px] underline-offset-[4px] backdrop-blur-sm">
               COMMUNITY,
-            </span>
+            </span>{" "}
             NOT IN ISOLATION.
           </h1>
           <p className="text-md md:text-lg font-caption text-pcfctertiary">

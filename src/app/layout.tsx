@@ -4,7 +4,6 @@ import { Anton, DM_Sans, Mona_Sans } from "next/font/google";
 
 import AuthProvider from "@/components/auth-provider";
 import Footer from "@/components/footer";
-import connectDB from "@/lib/db";
 import "./globals.css";
 
 const anton = Anton({
@@ -28,7 +27,7 @@ const monaSans = Mona_Sans({
 export const metadata: Metadata = {
   title: "PCFC Connect Group",
   description:
-    "Sign up and belong to a small group where you can grow in faith.",
+    "Sign up and belong to a small group where you can grow in faith. A Connect Group is a small community brought together by shared interests. It's a place to build life-long relationships, study God's Word, and apply it in daily life. More than just learning, we live out our faith—encouraging, supporting, and empowering one another to grow and disciple others.",
 };
 
 export default async function RootLayout({
@@ -36,7 +35,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await connectDB();
   return (
     <html lang="en">
       <head>

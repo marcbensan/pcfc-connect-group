@@ -1,5 +1,5 @@
 "use client";
-import { updateLeader } from "@/app/actions/leaders";
+import { deleteLeader, updateLeader } from "@/app/actions/leaders";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -15,12 +15,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { MongooseLeader } from "@/lib/models/leadersModel";
 import { Leader } from "@/lib/types/leader";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Trash2Icon } from "lucide-react";
 import { CldUploadWidget } from "next-cloudinary";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
 import { Label } from "./ui/label";
 import { Switch } from "./ui/switch";
 
@@ -52,7 +61,8 @@ export const LeaderSchema = z.object({
     .max(100, { message: "Description must not be over 100 characters" }),
 });
 
-export default function EditLeader({ leader }: { leader?: MongooseLeader }) {
+export default function EditLeader({ leader }: { leader: MongooseLeader }) {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [img, setImg] = useState<string>(leader?.img_url || "");
   const form = useForm<z.infer<typeof LeaderSchema>>({
     resolver: zodResolver(LeaderSchema),
@@ -101,14 +111,54 @@ export default function EditLeader({ leader }: { leader?: MongooseLeader }) {
     }
   }
 
+  function handleDelete(leaderId: number) {
+    try {
+      deleteLeader(leaderId);
+      router.back();
+    } catch (error) {
+      console.error("Form submission error", error);
+    }
+  }
+
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-8 w-full md:w-[40rem] rounded-lg bg-pcfcwhite text-pcfcprimary font-caption p-6 mt-4"
       >
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-row justify-between">
           <h1 className="text-xl font-extrabold">Edit - {leader?.name}</h1>
+          <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <DialogTrigger asChild>
+              <button className="cursor-pointer hover:opacity-80 transition-opacity">
+                <Trash2Icon className=" text-red-500" />
+              </button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px] bg-pcfcprimarydark text-white p-8 border-none">
+              <DialogHeader>
+                <DialogTitle className="font-bold">
+                  Delete {leader?.name}
+                </DialogTitle>
+              </DialogHeader>
+
+              <p>Are you sure you want to remove {leader?.name}?</p>
+
+              <DialogFooter className="flex flex-row justify-end">
+                <Button
+                  onClick={() => handleDelete(Number(leader.id))}
+                  className="px-4 py-2  text-pcfcwhite rounded-full cursor-pointer hover:opacity-80 bg-red-800 "
+                >
+                  Delete
+                </Button>
+                <Button
+                  className="px-4 py-2  text-pcfcprimary rounded-full cursor-pointer hover:opacity-80 bg-pcfcwhite "
+                  onClick={() => setIsOpen(false)}
+                >
+                  Cancel
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
         <hr />
         <CldUploadWidget
