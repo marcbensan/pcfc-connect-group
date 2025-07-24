@@ -1,10 +1,12 @@
 import Navbar from "@/components/navbar";
 import type { Metadata } from "next";
+import { SessionProvider } from "next-auth/react";
 import { Anton, DM_Sans, Mona_Sans } from "next/font/google";
 
 import Footer from "@/components/footer";
 import connectDB from "@/lib/db";
 import "./globals.css";
+import AuthProvider from "@/components/auth-provider";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -44,11 +46,13 @@ export default async function RootLayout({
       <body
         className={`${anton.variable} ${DMSans.variable} ${monaSans.variable} w-full bg-contain bg-[url(/bg-vertical.jpg)] md:bg-[url(/bg-horizontal.jpg)]`}
       >
-        <Navbar />
-        <div className="flex w-full justify-center">
-          <div className="z-5 w-full min-h-screen">{children}</div>
-        </div>
-        <Footer />
+        <AuthProvider>
+          <Navbar />
+          <div className="flex w-full justify-center">
+            <div className="z-5 w-full min-h-screen">{children}</div>
+          </div>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
