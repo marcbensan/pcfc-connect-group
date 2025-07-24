@@ -1,12 +1,11 @@
 import Navbar from "@/components/navbar";
 import type { Metadata } from "next";
-import { SessionProvider } from "next-auth/react";
 import { Anton, DM_Sans, Mona_Sans } from "next/font/google";
 
+import AuthProvider from "@/components/auth-provider";
 import Footer from "@/components/footer";
 import connectDB from "@/lib/db";
 import "./globals.css";
-import AuthProvider from "@/components/auth-provider";
 
 const anton = Anton({
   subsets: ["latin"],

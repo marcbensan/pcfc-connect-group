@@ -1,7 +1,7 @@
 import Admin from "@/components/admin";
+import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { getAllLeaders } from "../actions/leaders";
-import { authOptions } from "../api/auth/[...nextauth]/route";
 import Login from "./_components/login";
 
 export default async function PrivatePage() {
